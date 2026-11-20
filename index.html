@@ -1,0 +1,1406 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Luciano Arashiro, bom ancestral</title>
+<meta name="description" content="Luciano Arashiro: tecnologia de RH e SAP, livros e projetos. Deixo o caminho mais fácil para quem vem depois.">
+<meta name="theme-color" content="#0e0e0d">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://luciano-arashiro.vercel.app/">
+<meta property="og:title" content="Luciano Arashiro, bom ancestral">
+<meta property="og:description" content="Tecnologia de RH e SAP, livros e projetos. Deixo o caminho mais fácil para quem vem depois.">
+<meta property="og:image" content="https://luciano-arashiro.vercel.app/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+/* Layout: anéis de árvore como linha do tempo; seções que entram como slides ao rolar; três temas: preto e amarelo (padrão), floresta e colorido */
+:root{
+  --bg:#0e0e0d;
+  --surface:#181816;
+  --ink:#f2f0ea;
+  --muted:#a3a097;
+  --accent:#f2c12e;
+  --line:#2c2b28;
+  --ring:#d6d3c9;
+  --code-bg:#000;
+  --code-ink:#e8e5dc;
+  --c1:#d6d3c9; --c2:#d6d3c9; --c3:#d6d3c9; --c4:#d6d3c9; --c5:#d6d3c9;
+  --display:"Courier Prime", "Courier New", Courier, monospace;
+  --body:"IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  color-scheme: dark;
+}
+:root[data-skin="floresta"]{
+  --bg:#e6eae5; --surface:#f2f4f0; --ink:#13302a; --muted:#4a5f58;
+  --accent:#a8711a; --line:#c3cdc6; --ring:#2f5a4f; --code-bg:#13302a; --code-ink:#dfe8e2;
+  --c1:#2f5a4f; --c2:#2f5a4f; --c3:#2f5a4f; --c4:#2f5a4f; --c5:#2f5a4f;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark){
+  :root[data-skin="floresta"]:not([data-theme="light"]){
+    --bg:#0e1816; --surface:#152320; --ink:#dde6e0; --muted:#95aaa2;
+    --accent:#dba84a; --line:#2a3d38; --ring:#86ae9f; --code-bg:#08100e; --code-ink:#d4e0da;
+    --c1:#86ae9f; --c2:#86ae9f; --c3:#86ae9f; --c4:#86ae9f; --c5:#86ae9f;
+    color-scheme: dark;
+  }
+}
+:root[data-skin="floresta"][data-theme="dark"]{
+  --bg:#0e1816; --surface:#152320; --ink:#dde6e0; --muted:#95aaa2;
+  --accent:#dba84a; --line:#2a3d38; --ring:#86ae9f; --code-bg:#08100e; --code-ink:#d4e0da;
+  --c1:#86ae9f; --c2:#86ae9f; --c3:#86ae9f; --c4:#86ae9f; --c5:#86ae9f;
+  color-scheme: dark;
+}
+:root[data-skin="cor"]{
+  --bg:#fff6e8; --surface:#ffffff; --ink:#1c1b33; --muted:#57557a;
+  --accent:#ff5a33; --line:#eedac0; --ring:#2a5bd7; --code-bg:#1c1b33; --code-ink:#f3efe6;
+  --c1:#ff5a33; --c2:#2a5bd7; --c3:#e9a800; --c4:#119c78; --c5:#9a4ee0;
+  color-scheme: light;
+}
+
+
+*{box-sizing:border-box}
+html{scroll-snap-type:y proximity;scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:1.0625rem;line-height:1.6;transition:background-color .5s ease,color .5s ease}
+a{color:inherit}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 clamp(16px,4vw,40px)}
+@media (min-width:900px){.slide .wrap{padding-left:max(clamp(16px,4vw,40px),96px)}}
+
+/* cabeçalho */
+.top{position:fixed;inset:0 0 auto 0;z-index:30;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.top .bar{display:flex;justify-content:space-between;align-items:center;gap:16px;height:64px}
+.mark{font-family:var(--display);font-weight:700;font-size:1.15rem;text-decoration:none}
+.mark span{color:var(--accent)}
+.top .right{display:flex;align-items:center;gap:10px}
+.tema{display:inline-flex;align-items:center;gap:6px;background:transparent;border:0;color:var(--muted);font:500 .8rem var(--mono);letter-spacing:.04em;cursor:pointer;padding:8px 10px;border-radius:999px}
+.tema:hover{color:var(--ink)}
+.tema b{font-size:1.1rem;line-height:1;color:var(--accent);transition:transform .3s}
+.tema:hover b{transform:translateX(3px)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:999px;font-weight:600;text-decoration:none;font-size:.95rem;border:1.5px solid var(--ink);color:var(--ink);background:transparent;cursor:pointer}
+.btn.primary{background:var(--ink);color:var(--bg)}
+.btn.primary:hover{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+.btn.ghost:hover{border-color:var(--accent);color:var(--accent)}
+.btn.small{padding:8px 16px;font-size:.88rem}
+
+/* slides */
+.center{text-align:center}
+.center .measure{margin-left:auto;margin-right:auto}
+.measure{max-width:46ch}
+.tag{font-family:var(--mono);font-size:.8rem;letter-spacing:.06em;color:var(--accent);display:block;margin-bottom:18px}
+.count{font-family:var(--mono);font-size:.78rem;color:var(--muted);letter-spacing:.06em;display:block;margin-bottom:14px}
+.count b{color:var(--accent);font-weight:500}
+h1,h2,h3{font-family:var(--display);font-weight:700;text-wrap:balance;margin:0}
+h1{font-size:clamp(1.7rem,min(4.6vw,7vh),3.4rem);line-height:1.05;letter-spacing:-.03em;margin-bottom:22px}
+h1 em{font-style:normal;color:var(--accent)}
+h2{font-size:clamp(1.7rem,min(5vw,8vh),3.6rem);line-height:1.08;letter-spacing:-.025em;margin-bottom:18px}
+.big{font-size:clamp(1.5rem,min(4.2vw,6.5vh),3rem);line-height:1.12;letter-spacing:-.02em;margin-bottom:16px}
+.lead{font-size:clamp(.98rem,min(1.6vw,2.6vh),1.25rem);color:var(--muted);margin:0}
+.lead + .lead{margin-top:14px}
+p{margin:0}
+
+/* entrada dos slides */
+html.js .rv{opacity:0;transform:translateY(36px);transition:opacity .7s ease,transform .8s cubic-bezier(.2,.7,.2,1);transition-delay:calc(var(--d,0) * 130ms)}
+html.js .slide.in .rv{opacity:1;transform:none}
+
+
+/* capítulos para baixo, detalhes para a direita */
+.slide{min-height:100svh;display:flex;align-items:center;padding:76px 0 76px;position:relative}
+.chapter{position:relative;scroll-snap-align:start}
+/* celular e telas pequenas: cada capítulo é um carrossel horizontal */
+html:not(.deck) .chapter{display:flex;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
+html:not(.deck) .chapter::-webkit-scrollbar{display:none}
+html:not(.deck) .chapter > .slide{flex:0 0 100%;width:100%;scroll-snap-align:start;z-index:auto!important;padding-bottom:96px}
+
+/* computador: folhas sobrepostas */
+html.deck,html.deck body{height:100%;overflow:hidden;scroll-snap-type:none}
+html.deck main{position:fixed;inset:0;overflow:hidden}
+html.deck .chapter{position:static}
+html.deck .slide{position:absolute;inset:0;overflow:hidden;min-height:0;height:100%;background:var(--bg);will-change:transform;
+  transition:transform .9s cubic-bezier(.77,0,.18,1),filter .9s ease,visibility 0s linear .9s,background-color .5s ease,box-shadow .9s ease}
+html.deck .slide.s-down{transform:translateY(100%);visibility:hidden}
+html.deck .slide.s-up{transform:translateY(-6%) scale(.94);filter:brightness(.55);visibility:hidden}
+html.deck .slide.s-right{transform:translateX(100%);visibility:hidden}
+html.deck .slide.s-left{transform:translateX(-22%);filter:brightness(.55);visibility:hidden}
+html.deck .slide.s-cur{transform:none;filter:none;visibility:visible;box-shadow:0 0 70px rgba(0,0,0,.35);
+  transition:transform .9s cubic-bezier(.77,0,.18,1),filter .9s ease,visibility 0s,background-color .5s ease,box-shadow .9s ease}
+html.deck .slide .rv{transition-delay:calc(.35s + var(--d,0) * 110ms)}
+html.deck .slide:not(.s-cur) .rv{transition-delay:0s}
+@media (prefers-reduced-motion: reduce){
+  html.js .rv{transform:translateY(14px);transition:opacity .9s ease,transform .9s ease;transition-delay:calc(var(--d,0) * 140ms)}
+  html.js .bk .cover-img,html.js .bk .cover{transform:translateY(16px);transition:transform 1s ease,opacity 1s ease}
+  html.deck .slide{transition:clip-path .85s cubic-bezier(.65,0,.25,1),filter .85s ease,visibility 0s linear .85s,background-color .5s ease}
+  html.deck .slide.s-down{transform:none;clip-path:inset(100% 0 0 0)}
+  html.deck .slide.s-right{transform:none;clip-path:inset(0 0 0 100%)}
+  html.deck .slide.s-up,html.deck .slide.s-left{transform:none;filter:brightness(.6)}
+  html.deck .slide.s-cur{clip-path:inset(0 0 0 0);filter:none;transition:clip-path .85s cubic-bezier(.65,0,.25,1),filter .85s ease,visibility 0s,background-color .5s ease}
+}
+
+/* controle de detalhes */
+.pager{position:fixed;right:clamp(14px,3vw,32px);bottom:16px;z-index:26;display:flex;align-items:center;gap:10px;padding:5px 6px 5px 14px;border-radius:999px;
+  background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid var(--line);color:var(--ink);
+  transition:opacity .35s ease,background-color .6s ease,color .6s ease}
+.pager.off{opacity:0;pointer-events:none}
+.pager .lbl{font-family:var(--mono);font-size:.74rem;color:var(--muted);white-space:nowrap}
+.pager .dots{display:flex;gap:5px;align-items:center}
+.pager .dots i{display:block;width:7px;height:7px;border-radius:4px;background:var(--line);transition:width .3s,background-color .3s}
+.pager .dots i.on{width:18px;background:var(--accent)}
+.pager button{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--ink);font:500 1rem var(--mono);cursor:pointer;display:grid;place-items:center}
+.pager button:hover:not(:disabled){border-color:var(--accent);color:var(--accent)}
+.pager button:disabled{opacity:.3;cursor:default}
+.pager .nx{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.pager .nx:hover:not(:disabled){background:var(--accent);border-color:var(--accent);color:var(--bg)}
+.pager.pulse .nx{animation:nudge 1.1s ease-in-out 3}
+@keyframes nudge{50%{transform:translateX(5px)}}
+@media (prefers-reduced-motion: reduce){.pager.pulse .nx{animation:none}}
+
+/* abertura mínima */
+.hello{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(24px,5vw,64px);align-items:center}
+.hello h1{font-size:clamp(2.2rem,min(6.4vw,10vh),5rem);line-height:1;margin-bottom:22px}
+.hello .lead{font-size:clamp(1.05rem,min(1.9vw,3vh),1.4rem);max-width:30ch}
+.hello .eyebrow{margin:26px 0 0}
+.promise{font-family:var(--display);font-weight:700;font-size:clamp(1.8rem,min(4.6vw,7.4vh),3.6rem);line-height:1.08;letter-spacing:-.025em;text-wrap:balance;margin:0 0 20px}
+.promise em{font-style:normal;color:var(--accent)}
+.steps{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:26px}
+.steps span{font-family:var(--mono);font-size:.8rem;padding:6px 12px;border:1px solid var(--line);border-radius:999px}
+.steps span::before{content:"/ ";color:var(--accent)}
+.withpic .word{font-size:clamp(2rem,min(6vw,9vh),4.2rem)}
+@media (max-width:899px){.hello{grid-template-columns:1fr}.hello .rings-box{order:-1;max-width:260px;justify-self:center}}
+
+.rings-traj{aspect-ratio:1;width:100%;max-width:min(320px,40vh);margin-top:22px}
+.rings-traj canvas{width:100%;height:100%;display:block}
+@media (max-width:899px){.rings-traj{max-width:240px;margin:18px auto 0}}
+
+.pager.solo .lbl,.pager.solo .dots{display:none}
+.pager.solo{padding-left:6px}
+
+/* tema escuro no sistema: folhas em preto e grafite, sem clarão */
+@media (prefers-color-scheme: dark){:root:not([data-skin]):not([data-theme="light"]) .slide[data-tone="b"],:root:not([data-skin]):not([data-theme="light"])[data-tone="b"] .top,:root:not([data-skin]):not([data-theme="light"])[data-tone="b"] .branch,:root:not([data-skin]):not([data-theme="light"])[data-tone="b"] .pager{--bg:#1d1d1b;--surface:#272725;--ink:#f2f0ea;--muted:#a8a59c;--accent:#f2c12e;--line:#363531;--ring:#d6d3c9;--code-bg:#000;--code-ink:#e8e5dc;--c1:#d6d3c9;--c2:#d6d3c9;--c3:#d6d3c9;--c4:#d6d3c9;--c5:#d6d3c9;color-scheme:dark}}
+:root:not([data-skin])[data-theme="dark"] .slide[data-tone="b"],:root:not([data-skin])[data-theme="dark"][data-tone="b"] .top,:root:not([data-skin])[data-theme="dark"][data-tone="b"] .branch,:root:not([data-skin])[data-theme="dark"][data-tone="b"] .pager{--bg:#1d1d1b;--surface:#272725;--ink:#f2f0ea;--muted:#a8a59c;--accent:#f2c12e;--line:#363531;--ring:#d6d3c9;--code-bg:#000;--code-ink:#e8e5dc;--c1:#d6d3c9;--c2:#d6d3c9;--c3:#d6d3c9;--c4:#d6d3c9;--c5:#d6d3c9;color-scheme:dark}
+
+/* natureza ao fundo */
+canvas.ambient{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.slide > .wrap,.slide > footer{position:relative;z-index:1}
+
+/* celular: mais leve */
+html:not(.deck){scroll-snap-type:none}
+html:not(.deck) .top{backdrop-filter:none;-webkit-backdrop-filter:none;background:var(--bg)}
+html:not(.deck) .pager{backdrop-filter:none;-webkit-backdrop-filter:none;background:var(--bg)}
+html:not(.deck) .chapter{touch-action:pan-x pan-y;-webkit-overflow-scrolling:touch}
+html:not(.deck) .slide{transition:none}
+
+/* folhas também no celular */
+html.deck,html.deck body{overscroll-behavior:none}
+html.deck main{touch-action:none}
+@media (max-width:759px){
+  html.deck .slide{padding:72px 0 84px}
+  html.deck .slide .rings-traj{display:none}
+  html.deck .layers li{padding:7px 0}
+  html.deck .pic{max-width:min(240px,30vh)}
+  html.deck .pic.wide{max-width:100%}
+  html.deck .moments .photo{max-height:16vh}
+  html.deck .bk .cover-img{max-width:min(180px,28vh)}
+  html.deck .withpic{gap:20px}
+}
+html:not(.deck) .chapter{align-items:flex-start}
+
+.quotes{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:26px;text-align:left}
+.quotes figure{margin:0;padding:22px 24px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+.quotes blockquote{margin:0 0 14px;font-family:var(--display);font-weight:700;font-size:clamp(1.05rem,min(1.8vw,2.8vh),1.35rem);line-height:1.35}
+.quotes figcaption{text-align:left;margin:0;font-family:var(--mono);font-size:.74rem;line-height:1.5;color:var(--muted)}
+.quotes figcaption b{color:var(--ink);font-weight:500}
+@media (max-width:759px){.quotes{grid-template-columns:1fr;gap:14px}.quotes figure{padding:16px 18px}}
+
+/* estantes */
+dialog.shelf{width:min(1000px,calc(100vw - 32px));max-height:min(88vh,900px);border:1px solid var(--line);border-radius:18px;background:var(--bg);color:var(--ink);padding:0;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.45)}
+dialog.shelf[open]{display:flex;flex-direction:column;animation:shelfUp .5s cubic-bezier(.2,.7,.2,1)}
+@keyframes shelfUp{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
+@media (prefers-reduced-motion: reduce){dialog.shelf[open]{animation-name:shelfFade}@keyframes shelfFade{from{opacity:0}to{opacity:1}}}
+dialog.shelf::backdrop{background:rgba(0,0,0,.62);backdrop-filter:blur(4px)}
+.sh-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding:22px 26px 14px}
+.sh-head h2{font-size:clamp(1.4rem,3vw,2rem);margin:0}
+.sh-head p{color:var(--muted);font-size:.92rem;margin-top:4px}
+.sh-close{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--ink);font-size:1.2rem;cursor:pointer;flex:none}
+.sh-close:hover{border-color:var(--accent);color:var(--accent)}
+.sh-tools{display:flex;flex-wrap:wrap;gap:8px;padding:6px 26px 16px;align-items:center;border-bottom:1px solid var(--line)}
+.chip{border:1px solid var(--line);background:transparent;color:var(--muted);font:500 .76rem var(--mono);padding:6px 12px;border-radius:999px;cursor:pointer}
+.chip:hover{color:var(--ink);border-color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--accent);color:var(--bg);border-color:var(--accent)}
+.sh-search{margin-left:auto;display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;padding:6px 14px;min-width:220px}
+.sh-search input{border:0;background:transparent;color:var(--ink);font:inherit;font-size:.9rem;width:100%;outline:none}
+.sh-search:focus-within{border-color:var(--accent)}
+.sh-body{overflow:auto;padding:4px 26px 26px;flex:1}
+.sh-count{font-family:var(--mono);font-size:.74rem;color:var(--muted);padding:14px 0 6px}
+.sh-list{list-style:none;margin:0;padding:0}
+.sh-row{display:grid;grid-template-columns:90px minmax(0,1fr) auto;gap:6px 20px;align-items:baseline;padding:16px 0;border-bottom:1px solid var(--line)}
+.sh-row .k{font-family:var(--mono);font-size:.72rem;color:var(--accent);text-transform:uppercase;letter-spacing:.06em}
+.sh-row h3{font-size:1.05rem;margin:0 0 4px}
+.sh-row p{color:var(--muted);font-size:.92rem}
+.sh-row .themes{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.sh-row .themes span{font-family:var(--mono);font-size:.68rem;color:var(--muted);border:1px solid var(--line);border-radius:4px;padding:2px 7px}
+.sh-row .go{font-family:var(--mono);font-size:.78rem;white-space:nowrap;text-decoration:none;border-bottom:1.5px solid var(--accent)}
+.sh-row .go:hover{color:var(--accent)}
+.sh-row .soon{font-family:var(--mono);font-size:.74rem;color:var(--muted);white-space:nowrap}
+.sh-empty{padding:30px 0;color:var(--muted)}
+.sh-books{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:26px;padding-top:16px}
+.sh-book img,.sh-book .ph{width:100%;aspect-ratio:.7;object-fit:cover;object-position:top;border-radius:3px 8px 8px 3px;display:block;box-shadow:0 10px 24px rgba(0,0,0,.3)}
+.sh-book .ph{border:1.5px dashed var(--accent);box-shadow:none;display:grid;place-items:center;font-family:var(--display);font-weight:700;text-align:center;padding:12px}
+.sh-book .k{font-family:var(--mono);font-size:.7rem;color:var(--accent);display:block;margin:12px 0 4px;text-transform:uppercase;letter-spacing:.06em}
+.sh-book h3{font-size:1rem;margin:0 0 8px}
+.sh-book .links{display:flex;flex-direction:column;gap:4px}
+.sh-book .links a{font-size:.85rem;font-weight:600;text-decoration:none}
+.sh-book .links a:hover{color:var(--accent)}
+@media (max-width:640px){.sh-row{grid-template-columns:1fr}.sh-search{margin-left:0;width:100%}}
+
+
+/* cores por seção: papel sobre papel */
+:root:not([data-skin]) .slide[data-tone="b"],:root:not([data-skin])[data-tone="b"] .top,:root:not([data-skin])[data-tone="b"] .branch,:root:not([data-skin])[data-tone="b"] .pager{--bg:#f4f2ec;--surface:#ffffff;--ink:#121211;--muted:#5a574f;--accent:#9c7200;--line:#dcd8cc;--ring:#121211;--code-bg:#121211;--code-ink:#f4f2ec;--c1:#121211;--c2:#121211;--c3:#121211;--c4:#121211;--c5:#121211;color-scheme:light}
+:root:not([data-skin]) .slide[data-tone="c"],:root:not([data-skin])[data-tone="c"] .top,:root:not([data-skin])[data-tone="c"] .branch,:root:not([data-skin])[data-tone="c"] .pager{--bg:#f2c12e;--surface:#f6d066;--ink:#121211;--muted:#4a3f1c;--accent:#121211;--line:rgba(18,18,17,.22);--ring:#121211;--code-bg:#121211;--code-ink:#f2c12e;--c1:#121211;--c2:#121211;--c3:#121211;--c4:#121211;--c5:#121211;color-scheme:light}
+:root[data-skin="floresta"] .slide[data-tone="b"],:root[data-skin="floresta"][data-tone="b"] .top,:root[data-skin="floresta"][data-tone="b"] .branch,:root[data-skin="floresta"][data-tone="b"] .pager{--bg:#13302a;--surface:#1b3d36;--ink:#e6eae5;--muted:#a9bdb5;--accent:#dba84a;--line:#2a4a42;--ring:#a9cbbf;--code-bg:#e6eae5;--code-ink:#13302a;--c1:#a9cbbf;--c2:#a9cbbf;--c3:#a9cbbf;--c4:#a9cbbf;--c5:#a9cbbf;color-scheme:dark}
+:root[data-skin="floresta"] .slide[data-tone="c"],:root[data-skin="floresta"][data-tone="c"] .top,:root[data-skin="floresta"][data-tone="c"] .branch,:root[data-skin="floresta"][data-tone="c"] .pager{--bg:#c99a3c;--surface:#d6ad58;--ink:#1a1408;--muted:#3d2f12;--accent:#13302a;--line:rgba(0,0,0,.2);--ring:#13302a;--code-bg:#1a1408;--code-ink:#c99a3c;--c1:#13302a;--c2:#13302a;--c3:#13302a;--c4:#13302a;--c5:#13302a;color-scheme:light}
+:root[data-skin="cor"] .slide[data-tone="b"],:root[data-skin="cor"][data-tone="b"] .top,:root[data-skin="cor"][data-tone="b"] .branch,:root[data-skin="cor"][data-tone="b"] .pager{--bg:#1c1b33;--surface:#26254a;--ink:#fff6e8;--muted:#bdb9d8;--accent:#ff6a45;--line:#36345e;--ring:#7fa3ff;--code-bg:#fff6e8;--code-ink:#1c1b33;--c1:#ff6a45;--c2:#7fa3ff;--c3:#ffd23f;--c4:#3fd6a8;--c5:#c49bff;color-scheme:dark}
+:root[data-skin="cor"] .slide[data-tone="c"],:root[data-skin="cor"][data-tone="c"] .top,:root[data-skin="cor"][data-tone="c"] .branch,:root[data-skin="cor"][data-tone="c"] .pager{--bg:#2a5bd7;--surface:#3a69e0;--ink:#ffffff;--muted:#dbe4ff;--accent:#ffd23f;--line:rgba(255,255,255,.28);--ring:#ffffff;--code-bg:#ffffff;--code-ink:#2a5bd7;--c1:#ffd23f;--c2:#ffd23f;--c3:#ffd23f;--c4:#ffd23f;--c5:#ffd23f;color-scheme:dark}
+:root[data-skin="floresta"][data-theme="dark"] .slide[data-tone="b"],:root[data-skin="floresta"][data-theme="dark"][data-tone="b"] .top,:root[data-skin="floresta"][data-theme="dark"][data-tone="b"] .branch,:root[data-skin="floresta"][data-theme="dark"][data-tone="b"] .pager{--bg:#e6eae5;--surface:#f2f4f0;--ink:#13302a;--muted:#4a5f58;--accent:#a8711a;--line:#c3cdc6;--ring:#2f5a4f;--code-bg:#13302a;--code-ink:#e6eae5;--c1:#2f5a4f;--c2:#2f5a4f;--c3:#2f5a4f;--c4:#2f5a4f;--c5:#2f5a4f;color-scheme:light}
+@media (prefers-color-scheme: dark){:root[data-skin="floresta"]:not([data-theme="light"]) .slide[data-tone="b"],:root[data-skin="floresta"]:not([data-theme="light"])[data-tone="b"] .top,:root[data-skin="floresta"]:not([data-theme="light"])[data-tone="b"] .branch,:root[data-skin="floresta"]:not([data-theme="light"])[data-tone="b"] .pager{--bg:#e6eae5;--surface:#f2f4f0;--ink:#13302a;--muted:#4a5f58;--accent:#a8711a;--line:#c3cdc6;--ring:#2f5a4f;--code-bg:#13302a;--code-ink:#e6eae5;--c1:#2f5a4f;--c2:#2f5a4f;--c3:#2f5a4f;--c4:#2f5a4f;--c5:#2f5a4f;color-scheme:light}}
+.slide,.top{color:var(--ink)}
+.slide{background:var(--bg)}
+.top{transition:background-color .6s ease,color .6s ease}
+.branch .tip{color:var(--ink)}
+
+
+
+/* fotos */
+.withpic{display:grid;grid-template-columns:1.1fr minmax(220px,.8fr);gap:clamp(28px,6vw,80px);align-items:center}
+.pic{margin:0;justify-self:end;width:100%;max-width:min(400px,58vh)}
+.photo{display:block;width:100%;border-radius:14px;object-fit:cover;transition:filter .6s ease}
+.wide-pic{grid-template-columns:.8fr 1.2fr}
+.pic.wide{max-width:min(640px,100%)}
+.pic.wide .photo{aspect-ratio:16/10}
+.pic .photo{aspect-ratio:4/5;box-shadow:0 20px 50px rgba(0,0,0,.28)}
+.rings-box{position:relative}
+.portrait{position:absolute;left:50%;top:50%;width:27%;aspect-ratio:1;border-radius:50%;transform:translate(-50%,-50%);border:3px solid var(--bg);box-shadow:0 0 0 1.5px var(--ring);animation:portraitIn 1.2s ease .9s both}
+@keyframes portraitIn{from{opacity:0}to{opacity:1}}
+.moments{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:560px;margin:26px auto 0}
+.moments figure,.trio figure{margin:0}
+.moments .photo{aspect-ratio:4/3;max-height:22vh}
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:620px;margin:8px auto 4px}
+.trio .photo{aspect-ratio:1;max-height:26vh}
+figcaption{font-family:var(--mono);font-size:.74rem;color:var(--muted);margin-top:8px;text-align:center}
+:root:not([data-skin]) .photo{filter:grayscale(1) contrast(1.06)}
+:root:not([data-skin]) .photo:hover{filter:none}
+@media (max-width:899px){.withpic{grid-template-columns:1fr}.pic{justify-self:center;max-width:300px}}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(24px,5vw,64px);align-items:center}
+.eyebrow{font-family:var(--mono);font-size:.8rem;color:var(--muted);margin:0 0 16px}
+.hero .lead{max-width:56ch;font-size:1.05rem}
+.now{margin-top:18px;font-size:.95rem;padding:12px 16px;border-left:3px solid var(--accent);background:var(--surface);border-radius:0 10px 10px 0;color:var(--muted);max-width:56ch}
+.now b{font-family:var(--mono);font-weight:500;font-size:.74rem;color:var(--accent);margin-right:6px;text-transform:uppercase;letter-spacing:.06em}
+.rings-box{aspect-ratio:1/1;width:100%;max-width:min(420px,58vh);justify-self:end}
+#rings{width:100%;height:100%;display:block}
+.caret{display:inline-block;width:.55em;height:.9em;margin-left:.08em;vertical-align:-.08em;background:var(--accent);animation:blink 1.1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+@media (prefers-reduced-motion: reduce){.caret{animation:none}}
+.hint{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);font-family:var(--mono);font-size:.72rem;color:var(--muted);letter-spacing:.06em;display:flex;align-items:center;gap:8px}
+.hint kbd{font-family:inherit;border:1px solid var(--line);border-radius:4px;padding:1px 6px}
+
+/* trajetória */
+.two{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(28px,6vw,80px);align-items:center}
+.layers{list-style:none;margin:0;padding:0}
+.layers li{display:grid;grid-template-columns:36px 1fr;gap:12px;padding:9px 0;border-bottom:1px solid var(--line)}
+.layers .n{width:28px;height:28px;border-radius:50%;border:1.5px solid var(--ring);display:grid;place-items:center;font-family:var(--mono);font-size:.76rem;color:var(--ring)}
+.layers li.forming .n{border-style:dashed;border-color:var(--accent);color:var(--accent)}
+.layers h3{font-size:1rem;margin:0 0 1px}
+.layers p{color:var(--muted);font-size:.88rem;line-height:1.45}
+.stack{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.center .stack{justify-content:center}
+.stack span{font-family:var(--mono);font-size:.78rem;padding:5px 10px;border:1px solid var(--line);border-radius:6px;background:var(--surface)}
+
+/* um item por slide */
+.solo{max-width:760px;margin:0 auto;text-align:center}
+.solo .lead{max-width:48ch;margin-left:auto;margin-right:auto}
+.word{font-family:var(--mono);font-weight:500;font-size:clamp(2.2rem,min(8vw,12vh),5.6rem);line-height:1;letter-spacing:-.03em;color:var(--ring);margin-bottom:18px}
+.word::before{content:"/ ";color:var(--accent)}
+.practice{margin-top:26px;display:inline-block;text-align:left;padding:16px 20px;border:1px dashed var(--line);border-radius:12px;max-width:48ch}
+.practice b{display:block;font-family:var(--mono);font-weight:500;font-size:.74rem;color:var(--accent);letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px}
+.pill{display:inline-block;font-family:var(--mono);font-size:.78rem;padding:6px 14px;border-radius:999px;border:1px solid var(--accent);color:var(--accent)}
+.solo .actions{margin-top:28px;display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+
+/* ritmo */
+.rhythm{display:grid;grid-template-columns:1fr 1fr 1fr .8fr;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px 20px 14px;margin-top:32px;text-align:left}
+.rh-month{display:grid;grid-template-columns:1fr auto;gap:6px;align-items:center}
+.rh-days{height:26px;border-radius:5px;background:repeating-linear-gradient(90deg,var(--ring) 0 9px,transparent 9px 13px);opacity:.35}
+.rh-meet,.rh-final span:first-child{font-family:var(--mono);font-size:.7rem;color:var(--bg);background:var(--accent);border-radius:5px;padding:5px 7px;line-height:1.2}
+.rh-label{grid-column:1/-1;font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+.rh-final{display:grid;gap:6px;align-content:start}
+.rh-final span:first-child{display:grid;place-items:center;height:26px;padding:0 8px;text-align:center}
+.rh-legend{display:flex;justify-content:center;gap:18px;margin-top:12px;font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+.rh-legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.k-async{background:var(--ring);opacity:.45}.k-meet{background:var(--accent)}
+
+/* bibliotecário */
+.scale{max-width:520px;margin:34px auto 0}
+.scale-bar{position:relative;height:6px;border-radius:3px;background:linear-gradient(90deg,var(--ring),var(--accent))}
+.scale-dot{position:absolute;left:50%;top:50%;width:20px;height:20px;border-radius:50%;background:var(--bg);border:3px solid var(--ink);transform:translate(-50%,-50%)}
+html.js .slide.in .scale-dot{animation:wander 3.2s ease-in-out .6s 1}
+@keyframes wander{0%{left:50%}25%{left:12%}60%{left:88%}100%{left:50%}}
+.scale-ends{display:flex;justify-content:space-between;margin-top:12px;font-family:var(--mono);font-size:.74rem;color:var(--muted)}
+.scale-ends span:nth-child(2){color:var(--ink)}
+
+/* livros */
+.bk{display:grid;grid-template-columns:minmax(200px,300px) 1fr;gap:clamp(28px,6vw,80px);align-items:center}
+.cover-img{display:block;width:100%;max-width:min(300px,44vh);aspect-ratio:.7;object-fit:cover;object-position:top;border-radius:3px 8px 8px 3px;box-shadow:0 18px 40px rgba(0,0,0,.35)}
+html.js .bk .cover-img, html.js .bk .cover{transform:translateY(70px) rotate(-6deg) scale(.9);opacity:0;transition:transform 1s cubic-bezier(.2,.7,.2,1),opacity .8s}
+html.js .slide.in .bk .cover-img, html.js .slide.in .bk .cover{transform:none;opacity:1}
+.cover{aspect-ratio:.7;max-width:min(300px,44vh);width:100%;border-radius:3px 8px 8px 3px;padding:12% 11%;display:flex;flex-direction:column;justify-content:space-between;border:1.5px dashed var(--accent);color:var(--ink)}
+.cover .ct{font-family:var(--display);font-weight:700;font-size:clamp(1.4rem,2.6vw,2rem);line-height:1}
+.cover .ca{font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;opacity:.8}
+.bk .status{font-family:var(--mono);font-size:.78rem;color:var(--accent);display:block;margin-bottom:8px}
+.bk .lead{max-width:50ch}
+.buy{display:flex;flex-wrap:wrap;gap:10px 18px;margin-top:22px}
+.buy a{font-weight:600;font-size:.95rem;text-decoration:none;border-bottom:1.5px solid var(--accent);padding-bottom:2px}
+.buy a:hover{color:var(--accent)}
+.quote{font-family:var(--display);font-weight:700;font-size:clamp(1.5rem,min(4.6vw,7vh),3.4rem);line-height:1.15;letter-spacing:-.02em;max-width:22ch;margin:0 auto;text-wrap:balance}
+.quote::before{content:"“";color:var(--accent)}
+.quote::after{content:"”";color:var(--accent)}
+.quote + cite{display:block;margin-top:18px;font-family:var(--mono);font-style:normal;font-size:.78rem;color:var(--muted)}
+
+/* valores */
+.values{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;text-align:left;margin-top:36px}
+.values article{border-top:2px solid var(--ink);padding-top:14px}
+.values h3{font-size:1.15rem;margin-bottom:6px}
+.values p{color:var(--muted);font-size:.95rem}
+
+footer.fine{position:absolute;left:0;right:0;bottom:18px;font-family:var(--mono);font-size:.74rem;color:var(--muted)}
+footer.fine .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+/* galho de navegação */
+.branch{position:fixed;left:14px;top:0;height:100vh;width:64px;z-index:25}
+.branch svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.branch .stem{fill:none;stroke:var(--line);stroke-width:2;stroke-linecap:round}
+.branch .grow{fill:none;stroke:var(--ring);stroke-width:2.4;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset .8s cubic-bezier(.3,.7,.2,1),stroke .5s}
+.branch .bud{fill:var(--bg);stroke:var(--muted);stroke-width:1.5;transition:opacity .4s}
+.branch .leaf{fill:var(--ring);transform-box:fill-box;transform-origin:0 50%;transform:scale(0);transition:transform .6s cubic-bezier(.3,1.4,.4,1),fill .4s}
+.branch .node.past .leaf{transform:scale(.75)}
+.branch .node.now .leaf{transform:scale(1.15);fill:var(--accent)}
+.branch .node.past .bud,.branch .node.now .bud{opacity:0}
+.branch a{position:absolute;left:4px;width:46px;height:30px;transform:translateY(-50%);display:block;text-decoration:none}
+.branch .tip{position:absolute;left:52px;top:50%;transform:translate(-6px,-50%);opacity:0;pointer-events:none;white-space:nowrap;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:8px 12px;transition:opacity .2s,transform .2s;box-shadow:0 8px 24px rgba(0,0,0,.18)}
+.branch .tip b{display:block;font-family:var(--display);font-size:.95rem}
+.branch .tip small{display:block;font-size:.8rem;color:var(--muted)}
+.branch:hover .tip{opacity:.0}
+.branch a:hover .tip,.branch a:focus-visible .tip{opacity:1;transform:translate(0,-50%)}
+.branch:hover .grow{stroke:var(--accent)}
+@media (max-width:899px){.branch{display:none}}
+
+/* tema colorido */
+:root[data-skin="cor"] .layers li:nth-child(5n+1) .n{border-color:var(--c1);color:var(--c1)}
+:root[data-skin="cor"] .layers li:nth-child(5n+2) .n{border-color:var(--c2);color:var(--c2)}
+:root[data-skin="cor"] .layers li:nth-child(5n+3) .n{border-color:var(--c3);color:var(--c3)}
+:root[data-skin="cor"] .layers li:nth-child(5n+4) .n{border-color:var(--c4);color:var(--c4)}
+:root[data-skin="cor"] .layers li:nth-child(5n+5) .n{border-color:var(--c5);color:var(--c5)}
+:root[data-skin="cor"] [data-c="1"] .word,:root[data-skin="cor"] [data-c="1"] .tag{color:var(--c1)}
+:root[data-skin="cor"] [data-c="2"] .word,:root[data-skin="cor"] [data-c="2"] .tag{color:var(--c2)}
+:root[data-skin="cor"] [data-c="3"] .word,:root[data-skin="cor"] [data-c="3"] .tag{color:var(--c3)}
+:root[data-skin="cor"] [data-c="4"] .word,:root[data-skin="cor"] [data-c="4"] .tag{color:var(--c4)}
+:root[data-skin="cor"] [data-c="5"] .word,:root[data-skin="cor"] [data-c="5"] .tag{color:var(--c5)}
+:root[data-skin="cor"] .values article:nth-child(1){border-color:var(--c1)}
+:root[data-skin="cor"] .values article:nth-child(2){border-color:var(--c2)}
+:root[data-skin="cor"] .values article:nth-child(3){border-color:var(--c3)}
+:root[data-skin="cor"] .values article:nth-child(4){border-color:var(--c4)}
+::view-transition-old(root),::view-transition-new(root){animation:none;mix-blend-mode:normal}
+
+@media (max-width:899px){
+  .hero,.two,.bk{grid-template-columns:1fr}
+  .rings-box{justify-self:center;max-width:300px}
+  .values{grid-template-columns:1fr 1fr}
+  .rhythm{grid-template-columns:1fr 1fr}
+  .bk .cover-img,.bk .cover{max-width:220px}
+}
+@media (max-width:520px){
+  .values,.rhythm{grid-template-columns:1fr}
+  .top .tema span.lbl{display:none}
+}
+
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap bar">
+    <a class="mark" href="#inicio" data-go="0">Luciano<span>.</span></a>
+    <div class="right">
+      <button type="button" class="tema" id="skin-btn" aria-label="Trocar tema"><span class="lbl">Tema</span> <b aria-hidden="true">›</b></button>
+      <a class="btn primary small" href="#contato" data-go="5">Contato</a>
+    </div>
+  </div>
+</header>
+
+<nav class="branch" id="branch" aria-label="Capítulos do site"></nav>
+
+<main>
+
+<!-- 0 · oi -->
+<section class="chapter" id="inicio" data-ch="0" aria-label="Oi, eu sou o Luciano">
+  <div class="slide">
+    <div class="wrap hello">
+      <div>
+        <h1 class="rv">Oi, eu sou<br>o <em>Luciano</em>.<span class="caret" aria-hidden="true"></span></h1>
+        <p class="lead rv" style="--d:1">Trabalho com tecnologia de RH e SAP, escrevo livros e faço tudo pensando em quem vem depois.</p>
+        <p class="eyebrow rv" style="--d:2">SAP HCM · SuccessFactors · eSocial · São Paulo</p>
+      </div>
+      <div class="rings-box">
+        <img class="portrait photo" src="fotos/retrato.jpg" alt="Retrato de Luciano, sorrindo, de camiseta preta">
+        <canvas id="rings" role="img" aria-hidden="true"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="wrap two">
+      <div>
+        <span class="tag rv">a trajetória</span>
+        <h2 class="rv" style="--d:1">Cada fase virou um anel</h2>
+        <p class="lead rv" style="--d:2">Árvore cresce em camadas, e cada camada segura a próxima.</p>
+        <div class="rings-traj"><canvas id="rings-traj" role="img" aria-label="Anéis de crescimento de uma árvore; cada um dos sete anéis numerados é uma fase da trajetória, do centro para fora, e o externo, tracejado, ainda está em formação."></canvas></div>
+      </div>
+      <ol class="layers">
+        <li class="rv" style="--d:2"><div class="n">1</div><div><h3>Desenvolvedor</h3><p>PL/SQL na Oracle e Progress 4GL. Foi aqui que aprendi a pensar como sistema.</p></div></li>
+        <li class="rv" style="--d:3"><div class="n">2</div><div><h3>SAP HCM e ponto eletrônico</h3><p>Funcional SAP HCM, passei por quase todos os módulos e me especializei em ponto.</p></div></li>
+        <li class="rv" style="--d:4"><div class="n">3</div><div><h3>eSocial</h3><p>Fui promovido a responsável por um produto de eSocial na consultoria.</p></div></li>
+        <li class="rv" style="--d:5"><div class="n">4</div><div><h3>Functional lead no Labs</h3><p>Cuidando da equipe funcional, para cada regra de negócio fazer sentido.</p></div></li>
+        <li class="rv" style="--d:6"><div class="n">5</div><div><h3>Arquiteto de produto</h3><p>Pelo lado funcional, desenhando como o produto resolve o problema do negócio.</p></div></li>
+        <li class="rv" style="--d:7"><div class="n">6</div><div><h3>WorkForce Software</h3><p>Funcional numa plataforma de gestão de ponto que pedia JavaScript no dia a dia.</p></div></li>
+        <li class="forming rv" style="--d:8"><div class="n">7</div><div><h3>Migração para SuccessFactors</h3><p>O anel em formação: migração de dados e integrações para EC e ECP.</p></div></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="wrap solo">
+      <span class="tag rv">a trajetória</span>
+      <h2 class="big rv" style="--d:1">Do código ao funcional</h2>
+      <p class="lead rv" style="--d:2">Comecei como desenvolvedor, fora do mundo SAP. Depois virei funcional e segui funcional. Hoje ajudo nas integrações pelo lado funcional, e o passado com código me ajuda a entender e a conversar com quem constrói.</p>
+      <div class="moments rv" style="--d:3">
+        <figure><img class="photo" src="fotos/serpro.jpg" alt="Luciano em frente ao prédio do SERPRO" loading="lazy"><figcaption>SERPRO, na época do eSocial</figcaption></figure>
+        <figure><img class="photo" src="fotos/sap-forum.jpg" alt="Luciano de terno no SAP Forum Brasil" loading="lazy"><figcaption>SAP Forum Brasil</figcaption></figure>
+      </div>
+      <div class="stack rv" style="--d:4"><span>PL/SQL</span><span>Progress 4GL</span><span>JavaScript</span><span>WorkForce Software</span><span>SAP HCM</span><span>ABAP (relatórios, telas e queries)</span><span>ECP</span><span>SuccessFactors EC</span><span>eSocial</span><span>JSON / XML</span><span>Postman</span><span>SoapUI</span></div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="wrap solo">
+      <span class="tag rv">agora</span>
+      <h2 class="big rv" style="--d:1">Num projeto de migração para o SuccessFactors</h2>
+      <p class="lead rv" style="--d:2">Estou num projeto que leva o RH de SAP HCM/ECC para o Employee Central e o Employee Central Payroll. Ajudo na migração de dados e nas integrações, pelo lado funcional, e estou aprendendo muito no caminho.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 1 · como eu trabalho -->
+<section class="chapter" id="trabalho" data-ch="1" aria-label="Como eu trabalho">
+  <div class="slide">
+    <div class="wrap solo" style="max-width:880px">
+      <span class="tag rv">como eu trabalho</span>
+      <p class="promise rv" style="--d:1">Deixo o caminho mais fácil para <em>quem vem depois</em>.</p>
+      <p class="lead rv" style="--d:2">Tudo o que a gente cria hoje, seja um sistema, um processo ou um texto, vai ser herdado por alguém amanhã. Eu chamo isso de ser um bom ancestral. No dia a dia, funciona assim:</p>
+      <div class="steps rv" style="--d:3"><span>rastro</span><span>porquê</span><span>gente</span><span>pegada</span><span>ritmo</span><span>casos</span></div>
+    </div>
+  </div>
+
+  <div class="slide" data-c="1">
+    <div class="wrap withpic">
+      <div>
+        <span class="count rv"><b>01</b> / 05</span>
+        <div class="word rv" style="--d:1">rastro</div>
+        <h3 class="big rv" style="--d:2">Pequenas ações, todo dia</h3>
+        <p class="lead rv" style="--d:3">Mexi em alguma coisa, atualizo a documentação na hora. É como lavar a louça logo depois de usar: pequenos cuidados diários evitam que o trabalho se acumule, e quem chega depois encontra tudo em ordem.</p>
+      </div>
+      <figure class="pic rv" style="--d:2"><img class="photo" src="fotos/trabalho-casa.jpg" alt="Luciano trabalhando no notebook, de fones, com o cachorro ao lado e uma xícara de café" loading="lazy"></figure>
+    </div>
+  </div>
+
+  <div class="slide" data-c="2">
+    <div class="wrap withpic">
+      <div>
+        <span class="count rv"><b>02</b> / 05</span>
+        <div class="word rv" style="--d:1">porquê</div>
+        <h3 class="big rv" style="--d:2">Tempo para pensar</h3>
+        <p class="lead rv" style="--d:3">Gosto de avaliar, estudar e explorar antes de decidir. E registro o motivo de cada escolha junto com o resultado, porque o que foi feito fica, mas o porquê costuma se perder.</p>
+      </div>
+      <figure class="pic rv" style="--d:2"><img class="photo" src="fotos/ideia.jpg" alt="Luciano com a mão no queixo, pensativo, embaixo de uma lâmpada acesa" loading="lazy"></figure>
+    </div>
+  </div>
+
+  <div class="slide" data-c="4">
+    <div class="wrap withpic">
+      <div>
+        <span class="count rv"><b>03</b> / 05</span>
+        <div class="word rv" style="--d:1">gente</div>
+        <h3 class="big rv" style="--d:2">Reunião é conversa</h3>
+        <p class="lead rv" style="--d:3">Reunião que vira monólogo não é comigo. O que um bom texto resolve fica no assíncrono, e o encontro serve para decidir junto. E ensino enquanto faço, para ninguém ficar sendo o único que sabe.</p>
+      </div>
+      <figure class="pic rv" style="--d:2"><img class="photo" src="fotos/post-its.jpg" alt="Luciano de braços cruzados embaixo de uma parede cheia de post-its organizados" loading="lazy"></figure>
+    </div>
+  </div>
+
+  <div class="slide" data-c="5">
+    <div class="wrap solo">
+      <span class="count rv"><b>04</b> / 05</span>
+      <div class="word rv" style="--d:1">pegada</div>
+      <h3 class="big rv" style="--d:2">Um planeta para quem vem</h3>
+      <p class="lead rv" style="--d:3">Tudo o que é digital também consome energia e recursos. Guardar o que serve, rodar o que precisa e perguntar se precisa mesmo também é cuidar de quem vem depois.</p>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="wrap solo" style="max-width:900px">
+      <span class="count rv"><b>05</b> / 05</span>
+      <span class="tag rv" style="--d:1">ritmo</span>
+      <h3 class="big rv" style="--d:2">Assíncrono no dia a dia, junto quando importa</h3>
+      <p class="lead rv" style="--d:3">Um encontro presencial por mês, no ritmo ágil, para mostrar a entrega. Testes e entrega final, 100% presenciais.</p>
+      <div class="rhythm rv" style="--d:4" role="img" aria-label="Ritmo de um projeto: semanas de trabalho assíncrono, um encontro presencial ao fim de cada mês e testes e entrega final presenciais.">
+        <div class="rh-month"><div class="rh-days"></div><span class="rh-meet">encontro</span><span class="rh-label">mês 1</span></div>
+        <div class="rh-month"><div class="rh-days"></div><span class="rh-meet">encontro</span><span class="rh-label">mês 2</span></div>
+        <div class="rh-month"><div class="rh-days"></div><span class="rh-meet">encontro</span><span class="rh-label">mês 3</span></div>
+        <div class="rh-final"><span>testes + entrega final</span><span class="rh-label">presencial</span></div>
+      </div>
+      <div class="rh-legend rv" style="--d:5"><span><i class="k-async"></i>assíncrono</span><span><i class="k-meet"></i>presencial</span></div>
+    </div>
+  </div>
+
+  <div class="slide" data-c="1">
+    <div class="wrap solo" style="max-width:860px">
+      <span class="count rv">caso <b>01</b> / 02</span>
+      <span class="tag rv" style="--d:1">na prática · eSocial</span>
+      <h3 class="big rv" style="--d:2">Um produto que continuou crescendo depois de mim</h3>
+      <p class="lead rv" style="--d:3">Como responsável pelos produtos de eSocial numa consultoria, atendemos grandes clientes que precisavam de muitas implementações de BAdIs, e o produto evoluiu muito desde então.</p>
+      <p class="practice rv" style="--d:4"><b>O que ficou</b>Uma equipe com o conhecimento, uma liderança que acolhe e a possibilidade de seguir com o trabalho sem depender de mim.</p>
+    </div>
+  </div>
+
+  <div class="slide" data-c="2">
+    <div class="wrap solo" style="max-width:860px">
+      <span class="count rv">caso <b>02</b> / 02</span>
+      <span class="tag rv" style="--d:1">na prática · SAP HCM</span>
+      <h3 class="big rv" style="--d:2">O projeto que ninguém queria terminar</h3>
+      <p class="lead rv" style="--d:3">Uma consultoria tinha deixado um projeto de SAP HCM pela metade, porque já não dava lucro. A consultoria abraçou o cliente, e finalizamos o projeto em um mês e meio.</p>
+      <p class="practice rv" style="--d:4"><b>O que ficou</b>Treinei o key-user mostrando cada configuração para ele dar o suporte. Quando a empresa decidiu deixar o SAP, ele foi contratado por uma consultoria como consultor de folha e ponto. Anos depois, veio trabalhar com a gente.</p>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="wrap solo" style="max-width:980px">
+      <span class="tag rv">o que dizem</span>
+      <h3 class="big rv" style="--d:1">Nas palavras de quem trabalhou comigo</h3>
+      <div class="quotes">
+        <figure class="rv" style="--d:2">
+          <blockquote>“…nos impulsionou a darmos sempre o melhor de nós. Sou muito grata a você por ter acreditado em mim!”</blockquote>
+          <figcaption><b>Mayara de Oliveira</b> · liderada por mim · hoje Líder SF Employee Central &amp; Compensation na HR Path</figcaption>
+        </figure>
+        <figure class="rv" style="--d:3">
+          <blockquote>“…tem um conhecimento profundo de SAP e superou as expectativas com resultados excelentes.”</blockquote>
+          <figcaption><b>Michelle Vieira</b> · cliente no projeto GHRT da Johnson &amp; Johnson · tradução do inglês</figcaption>
+        </figure>
+      </div>
+      <p class="rv" style="--d:4;margin-top:26px;font-family:var(--mono);font-size:.8rem"><a href="https://www.linkedin.com/in/luciano-arashiro/details/recommendations/">Ler as recomendações completas no LinkedIn ↗</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- 2 · trabalhos e textos -->
+<section class="chapter" id="textos" data-ch="2" aria-label="Trabalhos e textos">
+  <div class="slide">
+    <div class="wrap solo">
+      <span class="tag rv">trabalhos e textos</span>
+      <h2 class="rv" style="--d:1">O que eu crio e escrevo</h2>
+      <p class="lead rv" style="--d:2">Projetos que eu construí e textos sobre tecnologia de RH, organização e pessoas. Aqui estão os destaques. O resto fica na estante.</p>
+    </div>
+  </div>
+  <div class="slide" data-c="3">
+    <div class="wrap solo">
+      <span class="count rv"><b>01</b> / 02</span>
+      <span class="tag rv" style="--d:1">projeto</span>
+      <h3 class="big rv" style="--d:2">IRIS: Índice de Regeneração e Integração Social</h3>
+      <p class="lead rv" style="--d:3">O PIB mede o que um país produz. O IRIS tenta medir o que ele está deixando para quem vem depois. Cinco dimensões, sem ranking: cada país compete consigo mesmo ao longo do tempo. Tem manifesto, simulação até 2075 e versão em português e inglês.</p>
+      <div class="actions rv" style="--d:4"><a class="btn primary" href="https://poc-iris.vercel.app/">Abrir o projeto ↗</a></div>
+    </div>
+  </div>
+  <div class="slide" data-c="5">
+    <div class="wrap solo">
+      <span class="count rv"><b>02</b> / 02</span>
+      <span class="tag rv" style="--d:1">projeto</span>
+      <h3 class="big rv" style="--d:2">Kotini: ferramentas de coaching</h3>
+      <p class="lead rv" style="--d:3">Imagine um coach no meio de uma sessão, sem notebook, só com o celular na mão. O Kotini reúne 9 ferramentas de coaching prontas para aplicar ali mesmo, na palma da mão.</p>
+      <div class="actions rv" style="--d:4"><a class="btn primary" href="https://kotini-app-alpha.vercel.app/">Abrir o app ↗</a></div>
+    </div>
+  </div>
+  <div class="slide" data-c="1">
+    <div class="wrap solo">
+      <span class="count rv"><b>01</b> / 03</span>
+      <span class="tag rv" style="--d:1">artigo</span>
+      <h3 class="big rv" style="--d:2">Organizando suas transações no SAP</h3>
+      <p class="lead rv" style="--d:3">Como usar o método P.A.R.A. para organizar os favoritos dentro do próprio SAP.</p>
+      <div class="actions rv" style="--d:4"><a class="btn primary" href="https://www.linkedin.com/pulse/organizando-suas-transa%C3%A7%C3%B5es-sap-simplificando-com-o-m%C3%A9todo-arashiro-cdczf/">Ler no LinkedIn ↗</a></div>
+    </div>
+  </div>
+  <div class="slide" data-c="2">
+    <div class="wrap solo">
+      <span class="count rv"><b>02</b> / 03</span>
+      <span class="tag rv" style="--d:1">artigo</span>
+      <h3 class="big rv" style="--d:2">Dashboards com SAP Crystal no WorkForce Software</h3>
+      <p class="lead rv" style="--d:3">Uma introdução ao uso do SAP Crystal para criar dashboards a partir dos relatórios do WorkForce Software.</p>
+      <div class="actions rv" style="--d:4"><a class="btn primary" href="https://www.linkedin.com/pulse/explorando-o-potencial-dos-relat%C3%B3rios-workforce-de-com-arashiro-ryruf/">Ler no LinkedIn ↗</a></div>
+    </div>
+  </div>
+  <div class="slide" data-c="4">
+    <div class="wrap solo">
+      <span class="count rv"><b>03</b> / 03</span>
+      <span class="tag rv" style="--d:1">post</span>
+      <h3 class="big rv" style="--d:2">Voz que pede cuidado</h3>
+      <p class="lead rv" style="--d:3">As ideias de Phil Stutz e o que elas ensinam sobre cuidar de si.</p>
+      <div class="actions rv" style="--d:4"><a class="btn primary" href="https://lnkd.in/p/ds8cq9F3">Ler no LinkedIn ↗</a></div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="wrap solo">
+      <span class="tag rv">a estante</span>
+      <h3 class="big rv" style="--d:1">Quer ver tudo?</h3>
+      <p class="lead rv" style="--d:2">Na estante ficam todos os projetos e textos, com filtro por tema e busca.</p>
+      <div class="actions rv" style="--d:3"><button type="button" class="btn primary" data-open="shelf-texts">Ver tudo <span id="n-texts"></span></button></div>
+      <p class="lead rv" style="--d:4;margin-top:40px;font-size:.98rem">Também faço templates, relatórios e apresentações em Word e PowerPoint. <a href="https://www.99freelas.com.br/user/luciano-a">Me chama no 99freelas ↗</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- 3 · livros -->
+<section class="chapter" id="livros" data-ch="3" aria-label="Livros">
+  <div class="slide">
+    <div class="wrap solo">
+      <span class="tag rv">livros</span>
+      <h2 class="rv" style="--d:1">Autopia, um mundo que ainda não existe</h2>
+      <p class="lead rv" style="--d:2">Escrevo romances e ensaios sobre um futuro em que a tecnologia resolveu a fome e a pobreza, mas não resolveu o que é humano. Quero que o leitor feche o livro com saudade de um mundo que ainda não existe.</p>
+      <div class="actions rv" style="--d:3"><a class="btn ghost" href="https://autopialivros.blogspot.com/">Ler o blog de Autopia ↗</a></div>
+    </div>
+  </div>
+  <div class="slide">
+    <div class="wrap bk">
+      <div><img class="cover-img" src="capas/autopia-quem-sabe-ne.jpg" alt="Capa de Autopia: quem sabe, né?" width="520"></div>
+      <div>
+        <span class="count rv" style="--d:2"><b>01</b> / 03</span>
+        <span class="status rv" style="--d:3">romance · publicado</span>
+        <h3 class="big rv" style="--d:3">Autopia: quem sabe, né?</h3>
+        <p class="lead rv" style="--d:4">Uma releitura da <i>Utopia</i> de Thomas More. Numa São Paulo pós-escassez, três dias de festival na Avenida Paulista juntam um contador de histórias, um filho que se afastou e uma artista nascida no mundo novo. Eles só descobrem no fim que são família.</p>
+        <div class="buy rv" style="--d:5"><a href="https://www.amazon.com.br/dp/B0DD7SC9QN">Amazon Kindle ↗</a><a href="https://clubedeautores.com.br/livro/autopia">Clube de Autores ↗</a></div>
+      </div>
+    </div>
+  </div>
+  <div class="slide">
+    <div class="wrap bk">
+      <div><img class="cover-img" src="capas/autopia-sobre-o-silencio.jpg" alt="Capa de Autopia: sobre o silêncio" width="520"></div>
+      <div>
+        <span class="count rv" style="--d:2"><b>02</b> / 03</span>
+        <span class="status rv" style="--d:3">romance · publicado</span>
+        <h3 class="big rv" style="--d:3">Autopia: sobre o silêncio</h3>
+        <p class="lead rv" style="--d:4">Miguel e a filha, Íris, perdem a esposa e mãe de repente. Íris para de falar. Potira, anciã da tribo Uaraci, acompanha o luto dos dois sem explicar nada. É um livro sobre cura pela presença.</p>
+        <div class="buy rv" style="--d:5"><a href="https://www.amazon.com.br/dp/B0H4Z8WSKW">Amazon Kindle ↗</a><a href="https://clubedeautores.com.br/livro/autopia-2">Clube de Autores ↗</a></div>
+      </div>
+    </div>
+  </div>
+  <div class="slide">
+    <div class="wrap bk">
+      <div><img class="cover-img" src="capas/autopia-para-quem-e-a-que-custo.jpg" alt="Capa de Autopia: Para quem? E a que custo?" width="520"></div>
+      <div>
+        <span class="count rv" style="--d:2"><b>03</b> / 03</span>
+        <span class="status rv" style="--d:3">ensaio · publicado</span>
+        <h3 class="big rv" style="--d:3">Autopia: Para quem? E a que custo?</h3>
+        <p class="lead rv" style="--d:4">A habitação como infraestrutura de uma cidade mais justa, resiliente e regenerativa. Um ensaio que leva as ideias de Autopia para o mundo real.</p>
+        <div class="buy rv" style="--d:5"><a href="https://www.amazon.com.br/dp/B0HRHYRMRB">Amazon Kindle ↗</a><a href="https://clubedeautores.com.br/livro/autopia-para-quem-e-a-que-custo">Clube de Autores ↗</a></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <div class="wrap solo">
+      <p class="quote rv">Honrar o passado, sonhar com o futuro e viver o presente.</p>
+      <cite class="rv" style="--d:1;display:block;margin-top:18px;font-family:var(--mono);font-style:normal;font-size:.78rem;color:var(--muted)">meu lema</cite>
+      <div class="actions rv" style="--d:2;margin-top:36px"><button type="button" class="btn ghost" data-open="shelf-books">Ver todos os livros <span id="n-books"></span></button></div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 · valores -->
+<section class="chapter" id="valores" data-ch="4" aria-label="Valores">
+  <div class="slide">
+    <div class="wrap solo" style="max-width:1000px">
+      <span class="tag rv">o que me move</span>
+      <p class="quote rv" style="--d:1">Ver, lembrar, trazer o melhor da humanidade e florescer com o mundo.</p>
+      <div class="values">
+        <article class="rv" style="--d:2"><h3>Estar junto</h3><p>Ser uma comunidade que se ajuda, torce e desafia as pessoas a serem melhores a cada dia.</p></article>
+        <article class="rv" style="--d:3"><h3>Seguir com medo, sem medo</h3><p>Acreditar no próprio potencial e trazer um impacto positivo no mundo, para o mundo.</p></article>
+        <article class="rv" style="--d:4"><h3>Aprender, viver</h3><p>Aprendizado bom é aprendizado vivido.</p></article>
+        <article class="rv" style="--d:5"><h3>Paz e silêncio</h3><p>Aquietar a alma para ver as pequenas felicidades e sabedorias do dia a dia.</p></article>
+      </div>
+    </div>
+  </div>
+  <div class="slide">
+    <div class="wrap withpic wide-pic">
+      <div>
+        <span class="tag rv">estar junto</span>
+        <h3 class="big rv" style="--d:1">Começa em casa</h3>
+        <p class="lead rv" style="--d:2">Ser uma comunidade que se ajuda, torce e desafia as pessoas a serem melhores a cada dia.</p>
+      </div>
+      <figure class="pic wide rv" style="--d:2"><img class="photo" src="fotos/familia.jpg" alt="Luciano, a esposa com a filha bebê no colo e o cachorro, rindo à mesa com uma vela acesa" loading="lazy"></figure>
+    </div>
+  </div>
+</section>
+
+<!-- 5 · contato -->
+<section class="chapter" id="contato" data-ch="5" aria-label="Contato">
+  <div class="slide">
+    <div class="wrap solo">
+      <span class="tag rv">contato</span>
+      <h2 class="rv" style="--d:1">Vamos conversar?</h2>
+      <p class="lead rv" style="--d:2">Se você procura alguém que estuda o problema, documenta enquanto faz e deixa o caminho pronto para o próximo, me chama no LinkedIn.</p>
+      <div class="actions rv" style="--d:3"><a class="btn primary" href="https://www.linkedin.com/in/luciano-arashiro">Falar comigo no LinkedIn ↗</a></div>
+      <p class="rv" style="--d:4;margin-top:22px;font-family:var(--mono);font-size:.8rem;color:var(--muted)"><a href="https://github.com/lucianoarashiro">GitHub ↗</a> &nbsp;·&nbsp; <a href="https://www.99freelas.com.br/user/luciano-a">99freelas ↗</a></p>
+    </div>
+    <footer class="fine"><div class="wrap"><span>Luciano · São Paulo · Feito para quem vem depois.</span></div></footer>
+  </div>
+</section>
+
+</main>
+<dialog class="shelf" id="shelf-texts" aria-labelledby="st-title">
+  <div class="sh-head">
+    <div><h2 id="st-title">Estante de trabalhos e textos</h2><p>Projetos e textos, num lugar só.</p></div>
+    <button type="button" class="sh-close" data-close aria-label="Fechar estante">✕</button>
+  </div>
+  <div class="sh-tools">
+    <div id="st-chips" role="group" aria-label="Filtrar por tema" style="display:flex;flex-wrap:wrap;gap:8px"></div>
+    <label class="sh-search"><span aria-hidden="true">⌕</span><input id="st-q" type="search" placeholder="Buscar por palavra" aria-label="Buscar nos trabalhos e textos"></label>
+  </div>
+  <div class="sh-body"><div class="sh-count" id="st-count" aria-live="polite"></div><ul class="sh-list" id="st-list"></ul></div>
+</dialog>
+
+<dialog class="shelf" id="shelf-books" aria-labelledby="sb-title">
+  <div class="sh-head">
+    <div><h2 id="sb-title">Estante de livros</h2><p>A série Autopia e o que está sendo escrito.</p></div>
+    <button type="button" class="sh-close" data-close aria-label="Fechar estante">✕</button>
+  </div>
+  <div class="sh-tools"><div id="sb-chips" role="group" aria-label="Filtrar por tipo" style="display:flex;flex-wrap:wrap;gap:8px"></div></div>
+  <div class="sh-body"><div class="sh-books" id="sb-list"></div></div>
+</dialog>
+
+<div class="pager off" id="pager" role="group" aria-label="Detalhes deste capítulo">
+  <span class="lbl" id="pg-lbl"></span>
+  <span class="dots" id="pg-dots" aria-hidden="true"></span>
+  <button type="button" id="pg-prev" aria-label="Detalhe anterior">←</button>
+  <button type="button" class="nx" id="pg-next" aria-label="Próximo detalhe">→</button>
+</div>
+
+<script>
+(function(){
+  const root = document.documentElement;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  root.classList.add('js');
+
+  /* ---------- temas ---------- */
+  const skins = [
+    {id:'mono', name:'Preto e amarelo'},
+    {id:'floresta', name:'Floresta'},
+    {id:'cor', name:'Colorido'}
+  ];
+  let idx = 0;
+  try { const saved = localStorage.getItem('skin'); const i = skins.findIndex(k => k.id === saved); if (i >= 0) idx = i; } catch(e){}
+  const btn = document.getElementById('skin-btn');
+  function apply(i){
+    idx = (i + skins.length) % skins.length;
+    const k = skins[idx];
+    if (k.id === 'mono') root.removeAttribute('data-skin'); else root.setAttribute('data-skin', k.id);
+    const next = skins[(idx + 1) % skins.length].name;
+    btn.setAttribute('aria-label', 'Tema atual: ' + k.name + '. Trocar para ' + next);
+    btn.title = 'Tema: ' + k.name + ' (próximo: ' + next + ')';
+    try { localStorage.setItem('skin', k.id); } catch(e){}
+  }
+  apply(idx);
+  btn.addEventListener('click', () => {
+    const b = btn.getBoundingClientRect();
+    const x = b.left + b.width/2, y = b.top + b.height/2;
+    if (!document.startViewTransition || reduce){ apply(idx + 1); return; }
+    const r = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
+    const t = document.startViewTransition(() => apply(idx + 1));
+    t.ready.then(() => {
+      root.animate({clipPath:[`circle(0px at ${x}px ${y}px)`, `circle(${r}px at ${x}px ${y}px)`]},
+        {duration:700, easing:'cubic-bezier(.6,0,.2,1)', pseudoElement:'::view-transition-new(root)'});
+    }).catch(()=>{});
+  });
+
+  /* ---------- anéis ---------- */
+  const ease = x => 1 - Math.pow(1 - x, 3);
+  const radius = (base, t, i) => base * (1 + 0.035*Math.sin(3*t + i*1.3) + 0.02*Math.sin(7*t + i*0.7) + 0.012*Math.sin(13*t + i*2.1));
+  function makeRings(cv, opts){
+    if (!cv) return {draw(){}, animate(){}};
+    const ctx = cv.getContext('2d');
+    const rings = opts.inner ? [0.34, 0.43, 0.52, 0.61, 0.70, 0.79, 0.89] : [0.16, 0.28, 0.40, 0.52, 0.64, 0.76, 0.89];
+    let grow = 0, cx = 0, cy = 0, raf = 0;
+    const tok = n => getComputedStyle(cv).getPropertyValue(n).trim();
+    function path(b, i, steps){
+      ctx.beginPath();
+      for (let s=0; s<=steps; s++){
+        const t = s/steps*Math.PI*2, r = radius(b, t, i);
+        const x = cx + r*Math.cos(t), y = cy + r*Math.sin(t);
+        s ? ctx.lineTo(x,y) : ctx.moveTo(x,y);
+      }
+      ctx.closePath();
+    }
+    function draw(){
+      const rect = cv.getBoundingClientRect();
+      if (!rect.width) return;
+      const dpr = window.devicePixelRatio || 1;
+      cv.width = rect.width * dpr; cv.height = rect.height * dpr;
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+      const w = rect.width, h = rect.height, R = Math.min(w,h)*0.48;
+      cx = w/2; cy = h/2;
+      ctx.clearRect(0,0,w,h);
+      const cor = root.getAttribute('data-skin') === 'cor';
+      const ring = tok('--ring'), accent = tok('--accent'), line = tok('--line'), surface = tok('--surface');
+      const g = ease(grow), n = rings.length, start = opts.inner ? 12 : 2;
+      ctx.strokeStyle = line; ctx.lineWidth = 1; ctx.globalAlpha = reduce ? g : 1;
+      for (let k=start; k<36; k++){ path(R*0.9*k/36*(reduce ? 1 : g), k*0.21, 160); ctx.stroke(); }
+      ctx.globalAlpha = 1;
+      rings.forEach((f,i)=>{
+        const p = Math.max(0, Math.min(1, grow*n*1.15 - i));
+        if (!p) return;
+        const last = i === n-1;
+        ctx.globalAlpha = p;
+        path(R*f*(reduce ? 1 : 0.85 + 0.15*ease(p)), i, 220);
+        ctx.strokeStyle = last ? accent : (cor ? tok('--c'+(i%5+1)) : ring);
+        ctx.lineWidth = last ? 2 : 1.8;
+        ctx.setLineDash(last ? [6,6] : []); ctx.stroke(); ctx.setLineDash([]);
+        ctx.globalAlpha = 1;
+      });
+      if (!opts.inner){ ctx.fillStyle = ring; ctx.beginPath(); ctx.arc(cx,cy,4,0,Math.PI*2); ctx.fill(); }
+      if (!opts.labels || grow < 1) return;
+      const ang = -Math.PI*0.28;
+      ctx.strokeStyle = ring; ctx.globalAlpha = .45; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(cx + R*0.98*Math.cos(ang), cy + R*0.98*Math.sin(ang)); ctx.stroke();
+      ctx.globalAlpha = 1;
+      rings.forEach((f,i)=>{
+        const last = i === n-1, col = last ? accent : (cor ? tok('--c'+(i%5+1)) : ring);
+        const r = radius(R*f, ang, i), x = cx + r*Math.cos(ang), y = cy + r*Math.sin(ang);
+        ctx.fillStyle = surface; ctx.beginPath(); ctx.arc(x,y,10,0,Math.PI*2); ctx.fill();
+        ctx.strokeStyle = col; ctx.lineWidth = 1.5; ctx.setLineDash(last ? [3,3] : []); ctx.stroke(); ctx.setLineDash([]);
+        ctx.fillStyle = col; ctx.font = '500 11px "IBM Plex Mono", monospace';
+        ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(String(i+1), x, y+0.5);
+      });
+    }
+    function animate(){
+      cancelAnimationFrame(raf);
+      const st = performance.now(), dur = reduce ? 2200 : 1600;
+      grow = 0;
+      (function f(now){ grow = Math.min(1,(now-st)/dur); draw(); if (grow < 1) raf = requestAnimationFrame(f); })(st);
+    }
+    return {draw, animate};
+  }
+  const heroRings = makeRings(document.getElementById('rings'), {inner:true, labels:false});
+  const trajRings = makeRings(document.getElementById('rings-traj'), {inner:false, labels:true});
+  function drawRings(){ heroRings.draw(); trajRings.draw(); }
+  heroRings.animate();
+  let lastEntered = null, ambientRef = null;
+  function onEnter(slide){
+    if (slide === lastEntered) return;
+    lastEntered = slide;
+    setTimeout(() => { if (ambientRef) ambientRef.set(slide); }, 60);
+    if (slide.querySelector('#rings-traj')) setTimeout(trajRings.animate, deckDelay());
+  }
+  /* ---------- capítulos e detalhes ---------- */
+  const chapters = [...document.querySelectorAll('.chapter')];
+  const grid = chapters.map(ch => [...ch.querySelectorAll(':scope > .slide')]);
+  const all = grid.flat();
+  let C = 0, S = 0, deck = false, lock = false;
+  const DUR = reduce ? 850 : 900;
+  function deckDelay(){ return deck ? 450 : 100; }
+  const seen = new Set();
+  // folhas posteriores ficam por cima
+  grid.forEach((row, c) => row.forEach((s, i) => { s.style.zIndex = c * 50 + i + 1; s.dataset.tone = c % 2 ? 'b' : 'a'; }));
+
+  const pager = document.getElementById('pager');
+  const pgLbl = document.getElementById('pg-lbl'), pgDots = document.getElementById('pg-dots');
+  const pgPrev = document.getElementById('pg-prev'), pgNext = document.getElementById('pg-next');
+
+  function setTone(){ const t = C % 2 ? 'b' : 'a'; if (root.getAttribute('data-tone') !== t) root.setAttribute('data-tone', t); }
+  let toneT;
+  function updatePager(){
+    const n = grid[C].length, lastCh = C === grid.length - 1;
+    pager.classList.toggle('solo', n < 2);
+    pager.classList.remove('off');
+    pgDots.innerHTML = grid[C].map((_, i) => `<i class="${i === S ? 'on' : ''}"></i>`).join('');
+    pgLbl.textContent = n < 2 ? '' : (S === 0 ? (n - 1 === 1 ? '1 detalhe' : `${n - 1} detalhes`) : `${S} de ${n - 1}`);
+    pgPrev.disabled = C === 0 && S === 0;
+    pgPrev.setAttribute('aria-label', S > 0 ? 'Detalhe anterior' : 'Voltar ao capítulo anterior');
+    const toNext = S === n - 1;
+    pgNext.disabled = toNext && lastCh;
+    pgNext.setAttribute('aria-label', toNext ? 'Próximo capítulo' : 'Próximo detalhe');
+    pgNext.textContent = toNext ? '↓' : '→';
+    pager.classList.toggle('pulse', n > 1 && S === 0 && !seen.has(C));
+  }
+  function paint(){
+    grid.forEach((row, c) => row.forEach((s, i) => {
+      const cur = c === C && i === S;
+      s.classList.toggle('s-cur', cur);
+      s.classList.toggle('s-up', c < C);
+      s.classList.toggle('s-down', c > C);
+      s.classList.toggle('s-left', c === C && i < S);
+      s.classList.toggle('s-right', c === C && i > S);
+      s.classList.toggle('in', cur);
+      if (deck && !cur) s.setAttribute('inert', ''); else s.removeAttribute('inert');
+    }));
+    clearTimeout(toneT); toneT = setTimeout(setTone, 420);
+    updatePager(); updateBranch(); onEnter(grid[C][S]);
+  }
+  function go(c, s = 0){
+    c = Math.max(0, Math.min(grid.length - 1, c));
+    s = Math.max(0, Math.min(grid[c].length - 1, s));
+    if (S > 0 || s > 0) seen.add(c);
+    if (deck){
+      if ((c === C && s === S) || lock) return;
+      lock = true; C = c; S = s; paint();
+      setTimeout(() => { lock = false; }, DUR);
+    } else {
+      if (c !== C) chapters[c].scrollIntoView({behavior:'smooth', block:'start'});
+      chapters[c].scrollTo({left: s * chapters[c].clientWidth, behavior:'smooth'});
+    }
+  }
+  const right = () => S < grid[C].length - 1 ? go(C, S + 1) : go(C + 1, 0);
+  const left = () => S > 0 ? go(C, S - 1) : (C > 0 ? go(C - 1, grid[C - 1].length - 1) : null);
+  const down = () => go(C + 1, 0);
+  const up = () => go(C - 1, 0);
+  pgNext.addEventListener('click', right);
+  pgPrev.addEventListener('click', left);
+
+  // encolhe o conteúdo da folha até caber
+  function fit(){
+    all.forEach(s => {
+      const w = s.querySelector(':scope > .wrap');
+      if (!w) return;
+      w.style.zoom = '';
+      if (!deck) return;
+      const cs = getComputedStyle(s);
+      const avail = s.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom);
+      const h = w.scrollHeight;
+      if (h > avail) w.style.zoom = Math.max(innerWidth < 760 ? 0.45 : 0.55, avail / h).toFixed(3);
+    });
+  }
+
+  // celular: capítulo pela rolagem vertical, detalhe pela rolagem horizontal
+  let io = null;
+  let lastSync = '';
+  function syncMobile(){
+    const s = Math.round(chapters[C].scrollLeft / Math.max(1, chapters[C].clientWidth));
+    const ns = Math.max(0, Math.min(grid[C].length - 1, s));
+    if (lastSync === C + ':' + ns) return;
+    lastSync = C + ':' + ns;
+    if (ns > 0) seen.add(C);
+    S = ns; grid[C].forEach((sl, i) => sl.classList.toggle('in', i === S)); updatePager(); updateBranch(); setTone(); onEnter(grid[C][S]);
+  }
+  let syncRaf = 0;
+  chapters.forEach((ch, c) => ch.addEventListener('scroll', () => {
+    if (deck || c !== C || syncRaf) return;
+    syncRaf = requestAnimationFrame(() => { syncRaf = 0; syncMobile(); });
+  }, {passive:true}));
+  function watch(){
+    if (io) io.disconnect();
+    io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting){ C = chapters.indexOf(e.target); syncMobile(); }
+    }), {rootMargin: '-45% 0px -45% 0px', threshold: 0});
+    chapters.forEach(ch => io.observe(ch));
+  }
+  function setMode(){
+    const want = innerHeight >= 440 && innerWidth >= 300;
+    if (want === deck && (deck || io)) { fit(); return; }
+    deck = want;
+    root.classList.toggle('deck', deck);
+    if (deck){ if (io){ io.disconnect(); io = null; } window.scrollTo(0,0); paint(); }
+    else {
+      all.forEach(s => { s.classList.remove('s-cur','s-up','s-down','s-left','s-right'); s.removeAttribute('inert'); });
+      watch(); updatePager();
+    }
+    fit();
+  }
+
+  // roda e trackpad: um passo por gesto
+  let acc = 0, accX = 0, last = 0, used = false;
+  window.addEventListener('wheel', e => {
+    if (!deck || document.querySelector('dialog[open]')) return;
+    e.preventDefault();
+    const now = performance.now();
+    if (now - last > 220){ used = false; acc = 0; accX = 0; }
+    last = now;
+    if (used || lock) return;
+    acc += e.deltaY; accX += e.deltaX;
+    if (Math.abs(accX) > 40 && Math.abs(accX) > Math.abs(acc)){ used = true; accX > 0 ? right() : left(); }
+    else if (Math.abs(acc) > 35){ used = true; acc > 0 ? down() : up(); }
+  }, {passive:false});
+  // toque: um passo por gesto
+  let tx = null, ty = null, tDone = false;
+  window.addEventListener('touchstart', e => {
+    if (document.querySelector('dialog[open]')) { tx = null; return; }
+    tx = e.touches[0].clientX; ty = e.touches[0].clientY; tDone = false;
+  }, {passive:true});
+  window.addEventListener('touchmove', e => {
+    if (!deck || tx === null) return;
+    if (!document.querySelector('dialog[open]')) e.preventDefault();
+    if (tDone || lock) return;
+    const dx = tx - e.touches[0].clientX, dy = ty - e.touches[0].clientY;
+    if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.2){ tDone = true; dx > 0 ? right() : left(); }
+    else if (Math.abs(dy) > 45 && Math.abs(dy) > Math.abs(dx) * 1.2){ tDone = true; dy > 0 ? down() : up(); }
+  }, {passive:false});
+  window.addEventListener('touchend', () => { tx = ty = null; }, {passive:true});
+  // teclado
+  document.addEventListener('keydown', e => {
+    if (e.altKey || e.ctrlKey || e.metaKey || document.querySelector('dialog[open]')) return;
+    const tag = (e.target.tagName || '').toLowerCase();
+    if (tag === 'input' || tag === 'textarea' || e.target.isContentEditable) return;
+    if (!deck) return;
+    const k = e.key;
+    if (e.repeat && lock){ e.preventDefault(); return; }
+    if (k === 'ArrowRight'){ e.preventDefault(); right(); }
+    else if (k === 'ArrowLeft'){ e.preventDefault(); left(); }
+    else if (k === 'ArrowDown' || k === 'PageDown' || (k === ' ' && !e.shiftKey)){ e.preventDefault(); down(); }
+    else if (k === 'ArrowUp' || k === 'PageUp' || (k === ' ' && e.shiftKey)){ e.preventDefault(); up(); }
+    else if (k === 'Home'){ e.preventDefault(); go(0); }
+    else if (k === 'End'){ e.preventDefault(); go(grid.length - 1); }
+  });
+  // links internos
+  document.querySelectorAll('[data-go]').forEach(a => a.addEventListener('click', ev => { ev.preventDefault(); go(+a.dataset.go, 0); }));
+
+  /* ---------- galho ---------- */
+  const secs = [
+    ['Oi','Quem eu sou, a trajetória e o agora'],
+    ['Como eu trabalho','O método, dois casos e quem trabalhou comigo'],
+    ['Trabalhos e textos','Projetos, textos e a estante completa'],
+    ['Livros','A série Autopia'],
+    ['Valores','O que me move'],
+    ['Contato','Vamos conversar']
+  ];
+  const nav = document.getElementById('branch');
+  const NS = 'http://www.w3.org/2000/svg';
+  let grow2, nodes = [], nodeYs = [], lut = [], total = 1;
+  function buildBranch(){
+    nav.innerHTML = '';
+    const H = innerHeight, top = 96, bottom = H - 70, X = 22;
+    const ys = secs.map((_, i) => top + i * (bottom - top) / (secs.length - 1));
+    const svg = document.createElementNS(NS, 'svg'); svg.setAttribute('aria-hidden', 'true');
+    let d = `M${X},${top - 30}`, prevY = top - 30;
+    ys.forEach((y, i) => { const mid = (prevY + y) / 2, off = (i % 2 ? 9 : -9); d += ` Q${X + off},${mid} ${X},${y}`; prevY = y; });
+    d += ` Q${X - 6},${bottom + 20} ${X - 2},${bottom + 34}`;
+    const stem = document.createElementNS(NS, 'path'); stem.setAttribute('d', d); stem.setAttribute('class', 'stem');
+    grow2 = document.createElementNS(NS, 'path'); grow2.setAttribute('d', d); grow2.setAttribute('class', 'grow'); grow2.setAttribute('pathLength', '1');
+    svg.append(stem, grow2);
+    nodes = []; nodeYs = ys;
+    const links = [];
+    ys.forEach((y, i) => {
+      const g = document.createElementNS(NS, 'g'); g.setAttribute('class', 'node');
+      const side = i % 2 ? 1 : -1;
+      const leaf = document.createElementNS(NS, 'path'); leaf.setAttribute('d', 'M0,0 C6,-9 17,-9 24,0 C17,9 6,9 0,0Z'); leaf.setAttribute('class', 'leaf');
+      const wl = document.createElementNS(NS, 'g'); wl.setAttribute('transform', `translate(${X},${y}) rotate(${side > 0 ? -28 : 208})`); wl.appendChild(leaf);
+      const bud = document.createElementNS(NS, 'circle'); bud.setAttribute('cx', X); bud.setAttribute('cy', y); bud.setAttribute('r', 3.5); bud.setAttribute('class', 'bud');
+      g.append(wl, bud); svg.appendChild(g); nodes.push(g);
+      const a = document.createElement('a');
+      a.href = '#' + chapters[i].id; a.style.top = y + 'px';
+      a.setAttribute('aria-label', secs[i][0] + ': ' + secs[i][1]);
+      a.innerHTML = `<span class="tip"><b>${secs[i][0]}</b><small>${secs[i][1]}</small></span>`;
+      a.addEventListener('click', ev => { ev.preventDefault(); go(i, 0); });
+      links.push(a);
+    });
+    nav.appendChild(svg); links.forEach(a => nav.appendChild(a));
+    total = grow2.getTotalLength(); lut = [];
+    for (let k = 0; k <= 300; k++){ const L = total * k / 300; lut.push([grow2.getPointAtLength(L).y, L]); }
+    updateBranch();
+  }
+  function lengthAtY(y){
+    for (let k = 1; k < lut.length; k++) if (lut[k][0] >= y){ const [y0,l0] = lut[k-1], [y1,l1] = lut[k]; return l0 + (l1 - l0) * ((y - y0) / ((y1 - y0) || 1)); }
+    return total;
+  }
+  function updateBranch(){
+    if (!grow2 || !lut.length) return;
+    const n = grid[C].length, y0 = nodeYs[C], y1 = C < nodeYs.length - 1 ? nodeYs[C + 1] : y0;
+    const y = y0 + (y1 - y0) * 0.7 * (n > 1 ? S / (n - 1) : 0);
+    grow2.style.strokeDashoffset = String(1 - lengthAtY(y) / total);
+    nodes.forEach((g, i) => { g.classList.toggle('past', i < C); g.classList.toggle('now', i === C); });
+  }
+
+  buildBranch();
+  setMode();
+  let rt, lastW = innerWidth, lastH = innerHeight;
+  window.addEventListener('resize', () => {
+    clearTimeout(rt);
+    rt = setTimeout(() => {
+      const onlyBar = innerWidth === lastW && Math.abs(innerHeight - lastH) < 160 && !deck;
+      lastW = innerWidth; lastH = innerHeight;
+      if (onlyBar) return;
+      setMode(); buildBranch(); drawRings(); if (ambientRef) ambientRef.resize();
+    }, 150);
+  });
+  try { matchMedia('(prefers-color-scheme: dark)').addEventListener('change', drawRings); } catch(e){}
+  new MutationObserver(drawRings).observe(root, {attributes:true, attributeFilter:['data-theme','data-skin']});
+  window.addEventListener('load', fit);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { fit(); drawRings(); });
+  /* ---------- natureza ao fundo ---------- */
+  const AMB = {textos:'bloom', hero:'pollen', trabalho:'leaves', livros:'stars', lema:'stars', valores:'ripples', contato:'seeds'};
+  const ambient = (() => {
+    const still = false; // animações de fundo são lentas e suaves: ficam sempre ligadas
+    let cv = null, ctx = null, kind = null, parts = [], raf = 0, W = 0, H = 0, t0 = 0;
+    const rnd = (a, b) => a + Math.random() * (b - a);
+    function col(n){ return getComputedStyle(cv).getPropertyValue(n).trim(); }
+    function size(){
+      const r = cv.getBoundingClientRect(), dpr = root.classList.contains('deck') ? (window.devicePixelRatio || 1) : 1;
+      W = r.width; H = r.height; cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
+    }
+    function seed(){
+      parts = [];
+      const full = root.classList.contains('deck');
+      const n = Math.round(({pollen:38, leaves:9, stars:140, ripples:0, seeds:2, bloom:0}[kind]) * (full || kind === 'seeds' ? 1 : .5));
+      for (let i = 0; i < n; i++) parts.push(make(true));
+    }
+    function make(initial){
+      if (kind === 'pollen') return {x:rnd(0,W), y:initial ? rnd(0,H) : H + 10, r:rnd(.8,2.2), vy:rnd(.12,.35), ph:rnd(0,6.28), a:rnd(.25,.7)};
+      if (kind === 'leaves') return {x:rnd(0,W), y:initial ? rnd(-H,H) : -30, s:rnd(.7,1.3), vy:rnd(.25,.55), rot:rnd(0,6.28), vr:rnd(-.01,.01), ph:rnd(0,6.28)};
+      if (kind === 'stars') return {x:rnd(0,W), y:rnd(0,H), r:rnd(.4,1.5), ph:rnd(0,6.28), sp:rnd(.4,1.4)};
+      if (kind === 'seeds'){
+        const side = Math.random() < .5;
+        return side ? {x:-40, y:rnd(H*.3,H*.95), s:rnd(1,1.5), vx:rnd(.35,.7), vy:rnd(-.3,-.08), ph:rnd(0,6.28)}
+                    : {x:rnd(W*.1,W*.7), y:H + 40, s:rnd(1,1.5), vx:rnd(.2,.5), vy:rnd(-.6,-.35), ph:rnd(0,6.28)};
+      }
+    }
+    let ripples = [], nextRipple = 0, shooting = null;
+    function frame(now){
+      const t = (now - t0) / 1000;
+      ctx.clearRect(0,0,W,H);
+      const ring = col('--ring'), accent = col('--accent');
+      if (kind === 'pollen'){
+        ctx.fillStyle = accent;
+        parts.forEach(p => {
+          if (!still){ p.y -= p.vy; p.x += Math.sin(t*.6 + p.ph) * .25; if (p.y < -10) Object.assign(p, make(false)); }
+          ctx.globalAlpha = p.a * (.6 + .4*Math.sin(t*1.3 + p.ph));
+          ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, 6.283); ctx.fill();
+        });
+      } else if (kind === 'leaves'){
+        ctx.fillStyle = ring;
+        parts.forEach(p => {
+          if (!still){ p.y += p.vy; p.x += Math.sin(t*.8 + p.ph) * .5; p.rot += p.vr + Math.sin(t + p.ph) * .004; if (p.y > H + 30) Object.assign(p, make(false)); }
+          ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.rot); ctx.scale(p.s, p.s); ctx.globalAlpha = .22;
+          ctx.beginPath(); ctx.moveTo(0,0); ctx.bezierCurveTo(6,-9,17,-9,24,0); ctx.bezierCurveTo(17,9,6,9,0,0); ctx.fill();
+          ctx.globalAlpha = .35; ctx.strokeStyle = col('--bg'); ctx.lineWidth = .8; ctx.beginPath(); ctx.moveTo(2,0); ctx.lineTo(21,0); ctx.stroke();
+          ctx.restore();
+        });
+      } else if (kind === 'stars'){
+        ctx.fillStyle = ring; ctx.shadowColor = ring;
+        parts.forEach(p => {
+          const tw = .5 + .5*Math.sin(t*p.sp + p.ph);
+          ctx.globalAlpha = .2 + .6 * tw; ctx.shadowBlur = p.r > 1.1 ? 6 * tw : 0;
+          ctx.beginPath(); ctx.arc(p.x, p.y, p.r * (.85 + .3*tw), 0, 6.283); ctx.fill();
+        });
+        ctx.shadowBlur = 0;
+        if (!still){
+          if (!shooting && Math.random() < .004) shooting = {x:rnd(W*.2,W), y:rnd(0,H*.4), life:0};
+          if (shooting){
+            const s = shooting, len = 90, dx = -Math.cos(.5), dy = Math.sin(.5);
+            s.x += dx*7; s.y += dy*7; s.life++;
+            const g = ctx.createLinearGradient(s.x, s.y, s.x - dx*len, s.y - dy*len);
+            g.addColorStop(0, accent); g.addColorStop(1, 'transparent');
+            ctx.globalAlpha = Math.max(0, 1 - s.life/45); ctx.strokeStyle = g; ctx.lineWidth = 1.4;
+            ctx.beginPath(); ctx.moveTo(s.x, s.y); ctx.lineTo(s.x - dx*len, s.y - dy*len); ctx.stroke();
+            if (s.life > 45) shooting = null;
+          }
+        }
+      } else if (kind === 'ripples'){
+        if (t > nextRipple){ const ty = rnd(H*.2,H*.92); ripples.push({x:rnd(W*.06,W*.94), ty, y:ty - rnd(120,260), r:0, max:rnd(90,200), fall:true}); nextRipple = t + rnd(.5, 1.6); }
+        ctx.strokeStyle = ring; ctx.lineWidth = 1;
+        ripples.forEach(rp => {
+          if (rp.fall){
+            rp.y += 7;
+            ctx.globalAlpha = .35; ctx.beginPath(); ctx.moveTo(rp.x, rp.y - 14); ctx.lineTo(rp.x, rp.y); ctx.stroke();
+            if (rp.y >= rp.ty){ rp.fall = false; rp.y = rp.ty; }
+            return;
+          }
+          rp.r += .55;
+          for (let k = 0; k < 3; k++){
+            const rr = rp.r - k*16; if (rr <= 0) continue;
+            ctx.globalAlpha = Math.max(0, .28 * (1 - rr/rp.max));
+            ctx.beginPath(); ctx.ellipse(rp.x, rp.y, rr, rr*.38, 0, 0, 6.283); ctx.stroke();
+          }
+        });
+        ripples = ripples.filter(rp => rp.fall || rp.r - 32 < rp.max);
+      } else if (kind === 'bloom'){
+        const flowers = [
+          {x:W*.84, h:Math.min(H*.58, 420), size:Math.min(52, W*.05), petals:8, delay:0},
+          {x:W*.14, h:Math.min(H*.38, 280), size:Math.min(34, W*.034), petals:6, delay:.9}
+        ];
+        const sm = x => x <= 0 ? 0 : x >= 1 ? 1 : x*x*(3 - 2*x);
+        flowers.forEach((f, idx) => {
+          const tt = t - f.delay;
+          const stem = sm(tt / 1.4), leaf = sm((tt - .9) / .8), open = sm((tt - 1.6) / 1.8);
+          if (stem <= 0) return;
+          const sway = Math.sin(t*.8 + idx) * 6 * stem;
+          const bx = f.x, by = H + 4, tx = bx + sway, ty = H - f.h * stem;
+          // caule
+          ctx.globalAlpha = .45; ctx.strokeStyle = ring; ctx.lineWidth = 1.6;
+          ctx.beginPath(); ctx.moveTo(bx, by); ctx.quadraticCurveTo(bx - 14, by - f.h*.5*stem, tx, ty); ctx.stroke();
+          // folhas
+          if (leaf > 0){
+            [[.42, 1], [.62, -1]].forEach(([k, side]) => {
+              const ly = by - f.h*k*stem, lx = bx - 14*k*(1-k)*2 + sway*k;
+              ctx.save(); ctx.translate(lx, ly); ctx.rotate(side > 0 ? -.7 : -2.45); ctx.scale(leaf * f.size/28, leaf * f.size/28);
+              ctx.globalAlpha = .3; ctx.fillStyle = ring;
+              ctx.beginPath(); ctx.moveTo(0,0); ctx.bezierCurveTo(6,-9,17,-9,24,0); ctx.bezierCurveTo(17,9,6,9,0,0); ctx.fill();
+              ctx.restore();
+            });
+          }
+          // pétalas
+          if (open > 0 || stem >= 1){
+            const L = f.size * (.45 + .55*open), w = L * .42, breath = 1 + Math.sin(t*1.2 + idx) * .03 * open;
+            ctx.save(); ctx.translate(tx, ty);
+            for (let i = 0; i < f.petals; i++){
+              const target = i / f.petals * Math.PI * 2, closed = (i / f.petals - .5) * .5;
+              const ang = closed + (target - closed) * open;
+              ctx.save(); ctx.rotate(ang); ctx.scale(breath, breath);
+              ctx.beginPath(); ctx.moveTo(0,0);
+              ctx.bezierCurveTo(w, -L*.35, w*.6, -L*.9, 0, -L);
+              ctx.bezierCurveTo(-w*.6, -L*.9, -w, -L*.35, 0, 0);
+              ctx.globalAlpha = .16 + .1*open; ctx.fillStyle = accent; ctx.fill();
+              ctx.globalAlpha = .5; ctx.strokeStyle = ring; ctx.lineWidth = 1; ctx.stroke();
+              ctx.restore();
+            }
+            ctx.globalAlpha = .9 * Math.max(open, .3); ctx.fillStyle = accent;
+            ctx.beginPath(); ctx.arc(0, 0, f.size*.12*(.5 + .5*open), 0, 6.283); ctx.fill();
+            ctx.restore();
+          }
+        });
+      } else if (kind === 'seeds'){
+        ctx.strokeStyle = ring; ctx.fillStyle = ring;
+        parts.forEach(p => {
+          if (!still){ p.x += p.vx; p.y += p.vy + Math.sin(t*.9 + p.ph) * .2; if (p.x > W + 60 || p.y < -60) Object.assign(p, make(false)); }
+          ctx.save(); ctx.translate(p.x, p.y); ctx.scale(p.s, p.s); ctx.rotate(Math.sin(t*.7 + p.ph) * .25); ctx.globalAlpha = .45; ctx.lineWidth = .7;
+          ctx.beginPath(); ctx.moveTo(0,0); ctx.lineTo(0,14); ctx.stroke();
+          ctx.beginPath(); ctx.ellipse(0,16,1.3,2.6,0,0,6.283); ctx.fill();
+          for (let k = 0; k < 9; k++){ const a = -Math.PI/2 + (k - 4) * .28; ctx.beginPath(); ctx.moveTo(0,0); ctx.lineTo(Math.cos(a)*11, Math.sin(a)*11); ctx.stroke(); }
+          ctx.restore();
+        });
+      }
+      ctx.globalAlpha = 1;
+      if (!still) raf = requestAnimationFrame(frame);
+    }
+    function set(slide){
+      cancelAnimationFrame(raf);
+      if (cv) ctx.clearRect(0,0,W,H);
+      const c = slide && slide.querySelector(':scope > canvas.ambient');
+      if (!c){ cv = null; return; }
+      cv = c; ctx = cv.getContext('2d'); kind = cv.dataset.kind; ripples = []; nextRipple = 0; shooting = null;
+      size(); seed(); t0 = performance.now(); raf = requestAnimationFrame(frame);
+    }
+    function resize(){ if (cv){ size(); seed(); } }
+    function redraw(){ if (cv && still) requestAnimationFrame(frame); }
+    return {set, resize, redraw};
+  })();
+  // coloca uma tela de fundo nos slides escolhidos
+  (function(){
+    const pick = {
+      hero: grid[0][0], trabalho: grid[1][0], textos: grid[2][0], livros: grid[3][0], lema: grid[3][grid[3].length - 1],
+      valores: grid[4][0], contato: grid[5][0]
+    };
+    Object.entries(pick).forEach(([k, s]) => {
+      if (!s) return;
+      const c = document.createElement('canvas'); c.className = 'ambient'; c.dataset.kind = AMB[k]; c.setAttribute('aria-hidden', 'true');
+      s.prepend(c);
+    });
+  })();
+  new MutationObserver(() => ambient.redraw()).observe(root, {attributes:true, attributeFilter:['data-skin','data-tone','data-theme']});
+  ambientRef = ambient;
+  ambient.set(grid[C][S]);
+  /* ---------- estantes ---------- */
+  // Para adicionar um texto ou livro novo, basta incluir uma linha nestas listas.
+  const TEXTS = [
+    {k:'projeto', t:'IRIS: Índice de Regeneração e Integração Social', d:'Um índice que mede o que cada país está deixando para quem vem depois. Cinco dimensões, sem ranking, com manifesto e simulação até 2075.', temas:['Projetos','Bom ancestral'], url:'https://poc-iris.vercel.app/'},
+    {k:'projeto', t:'Kotini: ferramentas de coaching', d:'9 ferramentas de coaching para o coach aplicar direto do celular, no meio da sessão, sem precisar de notebook.', temas:['Projetos','Pessoas e comunicação'], url:'https://kotini-app-alpha.vercel.app/'},
+    {k:'post', t:'Voz que pede cuidado', d:'As ideias de Phil Stutz e o que elas ensinam sobre cuidar de si.', temas:['Pessoas e comunicação'], url:'https://lnkd.in/p/ds8cq9F3'},
+    {k:'artigo', t:'Organizando suas transações no SAP', d:'Como usar o método P.A.R.A. para organizar os favoritos dentro do próprio SAP.', temas:['Tecnologia de RH e SAP','Organização e criatividade'], url:'https://www.linkedin.com/pulse/organizando-suas-transa%C3%A7%C3%B5es-sap-simplificando-com-o-m%C3%A9todo-arashiro-cdczf/'},
+    {k:'artigo', t:'Técnicas criativas: Brainwriting', d:'Uma técnica para gerar ideias e resolver problemas em grupo, escrevendo em vez de falar.', temas:['Organização e criatividade','Pessoas e comunicação'], url:'https://www.linkedin.com/pulse/explorando-t%C3%A9cnicas-criativas-para-resolu%C3%A7%C3%A3o-de-luciano-arashiro-bsayf/'},
+    {k:'artigo', t:'Dashboards com SAP Crystal no WorkForce Software', d:'Uma introdução ao uso do SAP Crystal para criar dashboards a partir dos relatórios do WorkForce Software.', temas:['Tecnologia de RH e SAP'], url:'https://www.linkedin.com/pulse/explorando-o-potencial-dos-relat%C3%B3rios-workforce-de-com-arashiro-ryruf/'},
+    {k:'série', t:'Protegendo o silêncio', d:'Reflexões sobre Your Best Meeting Ever, de Rebecca Hinds: um post de abertura e um para cada uma das sete estratégias do livro.', temas:['Pessoas e comunicação'], status:'em breve'},
+    {k:'material', t:'Método bom ancestral para integrações', d:'Uma pasta por par de sistemas, com descrição e de-para, e um checklist de integração bem entregue.', temas:['Bom ancestral','Tecnologia de RH e SAP'], status:'em escrita'}
+  ];
+  const BOOKS = [
+    {k:'romance', t:'Autopia: quem sabe, né?', img:'capas/autopia-quem-sabe-ne.jpg', amz:'B0DD7SC9QN', ca:'autopia'},
+    {k:'romance', t:'Autopia: sobre o silêncio', img:'capas/autopia-sobre-o-silencio.jpg', amz:'B0H4Z8WSKW', ca:'autopia-2'},
+    {k:'ensaio', t:'Autopia: Para quem? E a que custo?', img:'capas/autopia-para-quem-e-a-que-custo.jpg', amz:'B0HRHYRMRB', ca:'autopia-para-quem-e-a-que-custo'},
+    {k:'em escrita', t:'A primeira experiência de Íris no trabalho', ph:'Íris no trabalho'}
+  ];
+  const esc = x => String(x).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const norm = x => x.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase();
+  document.getElementById('n-texts').textContent = '(' + TEXTS.length + ')';
+  document.getElementById('n-books').textContent = '(' + BOOKS.length + ')';
+
+  function chips(el, options, onPick){
+    let active = 'Todos';
+    const render = () => {
+      el.innerHTML = ['Todos', ...options].map(o => `<button type="button" class="chip" aria-pressed="${o === active}">${esc(o)}</button>`).join('');
+      [...el.children].forEach((b, i) => b.addEventListener('click', () => { active = i ? options[i-1] : 'Todos'; render(); onPick(active); }));
+    };
+    render();
+  }
+
+  let tema = 'Todos';
+  const q = document.getElementById('st-q');
+  function renderTexts(){
+    const term = norm(q.value.trim());
+    const list = TEXTS.filter(x => (tema === 'Todos' || x.temas.includes(tema)) && (!term || norm(x.t + ' ' + x.d + ' ' + x.k + ' ' + x.temas.join(' ')).includes(term)));
+    document.getElementById('st-count').textContent = list.length === 1 ? '1 item' : list.length + ' itens';
+    document.getElementById('st-list').innerHTML = list.length ? list.map(x => `
+      <li class="sh-row">
+        <span class="k">${esc(x.k)}</span>
+        <div><h3>${esc(x.t)}</h3><p>${esc(x.d)}</p><div class="themes">${x.temas.map(m => `<span>${esc(m)}</span>`).join('')}</div></div>
+        ${x.url ? `<a class="go" href="${esc(x.url)}">${x.k === 'projeto' ? 'abrir' : 'ler'} ↗</a>` : `<span class="soon">${esc(x.status || '')}</span>`}
+      </li>`).join('') : '<li class="sh-empty">Nenhum texto com esse filtro. Tente outra palavra ou outro tema.</li>';
+  }
+  chips(document.getElementById('st-chips'), [...new Set(TEXTS.flatMap(x => x.temas))], v => { tema = v; renderTexts(); });
+  q.addEventListener('input', renderTexts);
+  renderTexts();
+
+  let tipo = 'Todos';
+  function renderBooks(){
+    const list = BOOKS.filter(b => tipo === 'Todos' || b.k === tipo);
+    document.getElementById('sb-list').innerHTML = list.map(b => `
+      <article class="sh-book">
+        ${b.img ? `<img src="${esc(b.img)}" alt="Capa de ${esc(b.t)}" loading="lazy">` : `<div class="ph" aria-hidden="true">${esc(b.ph)}</div>`}
+        <span class="k">${esc(b.k)}</span>
+        <h3>${esc(b.t)}</h3>
+        ${b.amz ? `<div class="links"><a href="https://www.amazon.com.br/dp/${esc(b.amz)}">Amazon Kindle ↗</a><a href="https://clubedeautores.com.br/livro/${esc(b.ca)}">Clube de Autores ↗</a></div>` : ''}
+      </article>`).join('');
+  }
+  chips(document.getElementById('sb-chips'), [...new Set(BOOKS.map(b => b.k))], v => { tipo = v; renderBooks(); });
+  renderBooks();
+
+  document.querySelectorAll('[data-open]').forEach(b => b.addEventListener('click', () => {
+    const d = document.getElementById(b.dataset.open);
+    try { d.showModal(); } catch(e){ d.setAttribute('open',''); }
+  }));
+  document.querySelectorAll('dialog.shelf').forEach(d => {
+    d.querySelector('[data-close]').addEventListener('click', () => d.close());
+    d.addEventListener('click', e => { if (e.target === d) d.close(); });
+  });
+})();
+
+</script>
+</body>
+</html>
